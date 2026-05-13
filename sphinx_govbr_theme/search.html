@@ -1,0 +1,33 @@
+{%- extends "!layout.html" %}
+{% set title = _('Search') %}
+
+{%- block scripts %}
+{{ super() }}
+<script src="{{ pathto('_static/searchtools.js', 1) }}"></script>
+<script src="{{ pathto('_static/language_data.js', 1) }}"></script>
+<script defer src="{{ pathto('searchindex.js', 1) }}"></script>
+{%- endblock %}
+
+{% block page_content %}
+<div class="col mb-5">
+    <noscript>
+        <div class="admonition warning">
+            <div class="br-message warning">
+        <div class="icon"><i aria-hidden="true" class="fas fa-lg fa-info-circle"></i></div>
+        <div class="content">
+            <p class="message-title">JavaScript</p>
+            <p>{% trans trimmed %}Please activate JavaScript to enable the search functionality.{% endtrans %}</p>
+        </div>
+    </div>
+        </div>
+    </noscript>
+    <div class="br-message info">
+        <div class="icon"><i aria-hidden="true" class="fas fa-lg fa-info-circle"></i></div>
+        <div class="content">
+            <p>{% trans trimmed %}Searching for multiple words only shows matches that contain all words.{% endtrans %}</p>
+        </div>
+    </div>
+    <p><span id="search-progress"></span></p>
+    <div id="search-results"></div>
+</div>
+{% endblock %}

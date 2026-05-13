@@ -1,0 +1,26 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-10 16:01+0000\n"
+"PO-Revision-Date: 2025-10-10 16:01+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../article.html:16
+msgid "Topics in this section"
+msgstr "Tópicos nesta seção"
+
+#: ../article.html:32
+msgid "Parent topic"
+msgstr "Tópico principal"
+
+#: ../layout.html:30
+msgid "Version"
+msgstr "Versão"

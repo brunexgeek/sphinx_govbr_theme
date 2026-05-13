@@ -1,0 +1,84 @@
+{%- macro generate_toc(entries) %}
+    {%- if entries %}
+        {%- for item in entries %}
+                {%- if item.children -%}
+                    <div class="menu-folder drop-menu {% if item.is_path %}active{% endif %}">
+                        <a class="menu-item" href="#" role="treeitem">
+                            {% if item.caption %}
+                            <span class="content">{{ item.caption|striptags|e }}</span>
+                            {% else %}
+                            <span class="content">{{ item.title|striptags|e }}</span>
+                            {% endif %}
+                        </a>
+                        <ul class="{% for x in item.children[0].classes %}{{ x }} {% endfor %}">
+                            {% if item.pagename %}
+                            <a class="menu-item" href="{{ item.url }}" role="treeitem"><span class="content">{{ item.title|striptags|e }}</span></a>
+                            {% endif %}
+                            {%- for sub in item.children %}
+                                {{- generate_toc_item(sub) }}
+                            {%- endfor %}
+                        </ul>
+                    </div>
+                {% else %}
+                    <a class="menu-item divider {% if item.is_active %}active{% endif %}" href="{{ item.url }}" role="treeitem">
+                        <span class="content">{{ item.title|striptags|e }}</span>
+                    </a>
+                {%- endif %}
+        {%- endfor %}
+    {%- endif %}
+{%- endmacro %}
+
+{%- macro generate_toc_item(item) -%}
+<li class="{% for x in item.classes %}{{ x }} {% endfor %} {% if item.is_path %}active{% endif %}">
+    {%- if item.children -%}
+        <a class="menu-item" href="#" role="treeitem"><span class="content">
+            {% if item.caption %}
+                {{ item.caption|striptags|e }}
+            {% else %}
+                {{ item.title|striptags|e }}
+            {% endif %}
+        </span></a>
+        <ul class="{% for x in item.children[0].classes %}{{ x }} {% endfor %}">
+            <a class="menu-item divider {% if item.is_active %}active{% endif %}" href="{{ item.url }}" role="treeitem"><span class="content">{{ item.title|striptags|e }}</span></a>
+            {%- for sub in item.children %}
+                {{- generate_toc_item(sub) }}
+            {%- endfor %}
+        </ul>
+    {%- else -%}
+        {% if not item.anchor %}
+            <a class="menu-item divider {% if item.is_active %}active{% endif %}" href="{{ item.url }}" role="treeitem"><span class="content">{{ item.title|striptags|e }}</span></a>
+        {% endif %}
+    {%- endif %}
+</li>
+{%- endmacro -%}
+
+<nav aria-label="{{ _('Table of Contents') }}" class="menu-body">
+    <a class="menu-item divider {% if pagename == master_doc %}active{% endif %}" href="{{ pathto(master_doc) }}" role="treeitem"><span class="content">Página inicial</span></a>
+    {%- if govbr_toc_map -%}
+        {%- for item in govbr_toc_map %}
+                {%- if item.children -%}
+                    <div class="menu-folder drop-menu {% if item.is_path %}active{% endif %}">
+                        <a class="menu-item" href="#" role="treeitem">
+                            {% if item.caption %}
+                            <span class="content">{{ item.caption|striptags|e }}</span>
+                            {% else %}
+                            <span class="content">{{ item.title|striptags|e }}</span>
+                            {% endif %}
+                        </a>
+                        <ul class="{% for x in item.children[0].classes %}{{ x }} {% endfor %}">
+                            {% if item.pagename %}
+                            <a class="menu-item" href="{{ item.url }}" role="treeitem"><span class="content">{{ item.title|striptags|e }}</span></a>
+                            {% endif %}
+                            {%- for sub in item.children %}
+                                {{- generate_toc_item(sub) }}
+                            {%- endfor %}
+                        </ul>
+                    </div>
+                {% else %}
+                    <a class="menu-item divider {% if item.is_active %}active{% endif %}" href="{{ item.url }}" role="treeitem">
+                        <span class="content">{{ item.title|striptags|e }}</span>
+                    </a>
+                {%- endif %}
+        {%- endfor %}
+    {% endif %}
+</nav>

@@ -1,0 +1,79 @@
+#sidebar-navigation {
+    display: none;
+}
+
+@media (min-width: 576px) {
+    #sidebar-navigation {
+        display: block;
+        position: sticky;
+        top: 88px;
+        overflow-y: scroll;
+        height: 84vh;
+    }
+
+    #main-navigation {
+        display:none;
+    }
+}
+
+@media (min-width: 576px) {
+    #navigation {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    #fake-navigation {
+        display: none;
+        cursor: pointer;
+    }
+    .br-menu {
+       --menu-logo: 24px;
+    }
+}
+
+.br-header .header-logo img {
+    min-width: 60px;
+}
+
+h1 .headerlink,
+h2 .headerlink,
+h3 .headerlink,
+h4 .headerlink,
+h5 .headerlink,
+h6 .headerlink {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 100ms ease-in-out;
+    font-size: .8em;
+    margin-left: .2em;
+}
+
+h1:hover .headerlink,
+h2:hover .headerlink,
+h3:hover .headerlink,
+h4:hover .headerlink,
+h5:hover .headerlink,
+h6:hover .headerlink {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* TOC and search results */
+
+@media (min-width: 576px) {
+    .toctree-wrapper ul > li a,
+    #search-results ul > li a {
+        font-size: var(--font-size-scale-up-01);
+        margin-bottom: var(--spacing-scale-base);
+        display: inline-block;
+    }
+}
+
+.toctree-wrapper .caption {
+    font-weight: var(--font-weight-semi-bold);
+}
+
+.highlight pre {
+    text-wrap: wrap;
+}

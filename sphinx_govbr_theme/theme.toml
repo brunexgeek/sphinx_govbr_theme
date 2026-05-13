@@ -1,0 +1,20 @@
+[theme]
+inherit = "basic"
+stylesheets = [
+    "css/core-lite.css",
+    "css/rawline.css",
+    "css/extra.css"
+]
+
+[options]
+sidebar_always_visible = false
+show_child_topics = false
+show_parent_topic = false
+header_extra_links = []
+header_toolbar = []
+footer_statement= ''
+project_subtitle = ''
+project_logo = ''
+signature = ''
+content_license = { 'name' = 'Creative Commons Atribuição-SemDerivações 4.0', 'url' = 'https://creativecommons.org/licenses/by-nd/4.0/deed.pt-br' }
+toc_pruning = false

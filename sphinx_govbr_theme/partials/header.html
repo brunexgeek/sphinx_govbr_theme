@@ -1,0 +1,81 @@
+<div class="container-lg">
+    <div class="header-top">
+        <div class="header-logo">
+        {% if theme_project_logo %}
+        <img src="{{ pathto(theme_project_logo, 1) }}" alt="gov.br" />
+        {% else %}
+        <img src="{{ pathto('_static/images/govbr.svg', 1) }}" alt="gov.br" />
+        {% endif %}
+        {% if theme_signature %}
+        <span class="br-divider vertical"></span>
+        <div class="header-sign">{{ theme_signature }}</div>
+        {% endif %}
+        </div>
+        <div class="header-actions">
+        {% if theme_header_extra_links %}
+        <div class="header-links dropdown">
+            <button class="br-button circle small" type="button" data-toggle="dropdown" aria-label="Abrir Acesso Rápido"><i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+            </button>
+            <div class="br-list">
+            <div class="header">
+                <div class="title">Acesso Rápido</div>
+            </div>
+            {% for item in theme_header_extra_links %}
+            <a class="br-item" target="_blank" href="{{ item.url }}">{{ item.title }}</a>
+            {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if theme_header_toolbar and theme_header_extra_links %}
+        <span class="br-divider vertical mx-half mx-sm-1"></span>
+        {% endif %}
+        {% if theme_header_toolbar %}
+        <div class="header-functions dropdown">
+            <button class="br-button circle small" type="button" data-toggle="dropdown" aria-label="Abrir Funcionalidades do Sistema"><i class="fas fa-th" aria-hidden="true"></i>
+            </button>
+            <div class="br-list">
+            <div class="header">
+                <div class="title">Funcionalidades do Sistema</div>
+            </div>
+            {% for item in theme_header_toolbar %}
+            <div class="br-item">
+                <button class="br-button circle small" type="button" aria-label="{{ item.title }}" id="{{ item.id }}"><i class="fas {{ item.icon }}" aria-hidden="true"></i><span class="text">{{ item.title }}</span>
+                </button>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        <div class="header-search-trigger">
+            <button class="br-button circle" type="button" aria-label="Abrir Busca" data-toggle="search" data-target=".header-search"><i class="fas fa-search" aria-hidden="true"></i>
+            </button>
+        </div>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="header-menu">
+        <div class="header-menu-trigger" id="header-navigation">
+            <button class="br-button small circle" type="button" aria-label="Menu" data-toggle="menu" data-target="#main-navigation" id="navigation"><i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+            <button class="br-button small circle" type="button" aria-label="Menu" data-toggle="menu" data-target="#main-navigation" id="fake-navigation" disabled><i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="header-info">
+            <div class="header-title"><a href="{{ pathto(master_doc) }}">{{ project|striptags|e }}</a></div>
+            <div class="header-subtitle">{{ theme_project_subtitle|striptags|e }}</div>
+        </div>
+        </div>
+        <div class="header-search" id="main-searchbox">
+        <form id="rtd-search-form" action="{{ pathto('search.html', 1) }}" method="get">
+            <div class="br-input has-icon">
+                <label for="searchbox">Texto da pesquisa</label>
+                <input id="searchbox" type="text" name="q" placeholder="O que você procura?" />
+                <input type="hidden" name="check_keywords" value="yes">
+                <button class="br-button circle small" type="submit" aria-label="Pesquisar"><i class="fas fa-search" aria-hidden="true"></i></button>
+            </div>
+        </form>
+        <button class="br-button circle search-close ml-1" type="button" aria-label="Fechar Busca" data-dismiss="search"><i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        </div>
+    </div>
+</div>
