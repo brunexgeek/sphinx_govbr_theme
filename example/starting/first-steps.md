@@ -1,12 +1,12 @@
-Como começar
-============
+(how-to-start)=
+
+# Como começar
 
 O Padrão Digital de Governo (também chamado de Design System do Governo do Brasil) é a sua bússola para navegar pelo universo do design de serviços públicos em todas as esferas (federal, estadual e municipal). Aqui, unimos eficiência, acessibilidade e estética para criar experiências digitais que transformam a interação do cidadão com o Estado.
 
 Iniciar é simples e transformador!
 
-Por que usar um Design System?
-++++++++++++++++++++++++++++++
+## Por que usar um Design System?
 
 Design System é uma coleção de padrões reutilizáveis e componentes guiados por padrões claros, que são usados para garantir a consistência e a eficiência de um produto ou serviço em múltiplas plataformas e dispositivos. Serve como uma única fonte de verdade para designers, desenvolvedores e todos os envolvidos no processo de desenvolvimento de um produto.
 
@@ -22,38 +22,33 @@ Principais razões para adotar um Design System são:
 
 Em resumo, um Design System é um investimento na base de um produto digital, garantindo que ele seja construído sobre uma fundação sólida e coesa que oferece uma ótima experiência para o usuário e facilita o trabalho das equipes envolvidas.
 
-O que preciso saber antes de começar?
-+++++++++++++++++++++++++++++++++++++
+## O que preciso saber antes de começar?
 
 Antes de começar um projeto utilizando o Padrão Digital de Governo é importante estar alinhado com todo o conteúdo básico necessário para compreende o processo de trabalho. Que tal começar pelos indicados a seguir?
 
-1- Princípios do Padrão Digital de Governo
-++++++++++++++++++++++++++++++++++++++++++
+## Princípios do Padrão Digital de Governo
 
 Tenha certeza de que compreendeu completamente os **Princípios** estabelecidos, pois eles são a base de todo o seu trabalho.
 
-    Leia atentamente e compreenda os nossos princípios.
+> Leia atentamente e compreenda os nossos princípios.
 
-2- Fundamentos Visuais
-++++++++++++++++++++++
+## Fundamentos Visuais
 
 Dominar os **Fundamentos Visuais** é o próximo passo garantir uma linguagem visual unificada. Incluem elementos essenciais padronizados, como cores, tipografias, espaçamentos, ícones, entre outros, para garantir consistência e clareza.
 
-    Esteja familiarizado com os conceitos básicos dos Fundamentos Visuais.
+> Esteja familiarizado com os conceitos básicos dos Fundamentos Visuais.
 
-3- Comunidade
-+++++++++++++
+## Comunidade
 
 Para manter todos os usuários mais próximos, criamos uma comunidade no Discord. Este é o espaço ideal para trocarmos informações, tirar dúvidas, sugerir melhorias ou simplesmente discutir assuntos relacionados ao Design System.
 
-    Fique à vontade e junte-se a nós na comunidade do Design System.
+> Fique à vontade e junte-se a nós na comunidade do Design System.
 
-Agora você já está pronto para começar!
-+++++++++++++++++++++++++++++++++++++++
+## Agora você já está pronto para começar!
 
 Escolha o fluxo de trabalho mais adequado para seu perfil de atuação:
 
-        Quero trabalhar com Criação: Entenda o fluxo de trabalho de criação.
-
-        Quero trabalhar com Desenvolvimento: Entenda o fluxo de trabalho de desenvolvimento.
+> Quero trabalhar com Criação: Entenda o fluxo de trabalho de criação.
+>
+> Quero trabalhar com Desenvolvimento: Entenda o fluxo de trabalho de desenvolvimento.
 

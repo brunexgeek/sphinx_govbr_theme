@@ -1,6 +1,6 @@
 from sphinx.environment.adapters.toctree import TocTree
 import sphinx.addnodes
-from .toc import TreeGenerator
+from .toc import TreeGenerator, toc_to_dicts
 import os
 import re
 import json
@@ -9,6 +9,8 @@ from sphinx.util.console import colorize
 import time
 from datetime import datetime
 from typing import Any, Type
+from .translator import DesignSystemTranslator
+from .roles import BrLinkRole
 
 logger = logging.getLogger(__name__)
 
@@ -125,6 +127,9 @@ def custom_metadata_processing(app, doctree, docname):
 
 
 def setup(app):
+    app.add_role("br_link", BrLinkRole())
+    app.set_translator("html", DesignSystemTranslator)
+
     # add Sphinx message catalog for translations; it seems Sphinx expects the catalog name to be 'sphinx'
     locale_dir = os.path.join(os.path.dirname(__file__), 'locales')
     print(locale_dir)

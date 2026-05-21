@@ -4,8 +4,9 @@ import os
 import re
 from typing import TYPE_CHECKING
 
+extensions = ["myst_parser"]
+
 coverage_statistics_to_report = coverage_statistics_to_stdout = True
-exclude_patterns = ['_build']
 
 project = 'Padrão Digital de Governo'
 project_subtitle = 'Design System | Versão 3.7.0'

@@ -1,7 +1,8 @@
-:no-search:
+---
+no-search:
+---
 
-Design System
-=============
+# Design System
 
 O Padrão Digital de Governo apresenta os padrões de interface que devem ser seguidos por designers e desenvolvedores para garantir a experiência única na interação com os sistemas interativos.
 
@@ -11,16 +12,18 @@ A proposta surgiu a partir do sentimento comum acerca da necessidade de oferecer
 
 A iniciativa potencializa a eficiência e a eficácia dos usuários na utilização de interfaces para acesso aos serviços e aos sistemas de Governo, possibilitando uma única curva de aprendizado e garantindo a previsibilidade na utilização dos diferentes sistemas.
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Visão geral
+```{toctree}
+:maxdepth: 3
+:caption: Visão geral
 
-   intro/introduction
-   intro/principle
+intro/introduction
+intro/principle
+```
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Guia de uso
+```{toctree}
+:maxdepth: 3
+:caption: Guia de uso
 
-   starting/first-steps
+starting/first-steps
+```
 

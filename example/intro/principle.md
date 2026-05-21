@@ -1,40 +1,32 @@
-Princípios do Design System
-===========================
+# Princípios do Design System
 
-Objetivos dos Princípios
-++++++++++++++++++++++++
+## Objetivos dos Princípios
 
-    guiar decisões de design;
-    ser autênticos e específicos, em vez de genéricos;
-    ser facilmente memorizáveis, fáceis de lembrar e utilizáveis no dia a dia.
+> guiar decisões de design;
+> ser autênticos e específicos, em vez de genéricos;
+> ser facilmente memorizáveis, fáceis de lembrar e utilizáveis no dia a dia.
 
-Experiência Única
-+++++++++++++++++
+## Experiência Única
 
 Os serviços digitais do governo se propõem a atender os cidadãos como uma central única, um balcão de atendimento, que ofereça soluções para diferentes necessidades. Devem, portanto, compartilhar e seguir os mesmos padrões estruturais e visuais. A experiência precisa conferir confiança aos usuários, diminuindo sua curva de aprendizado. A interface deve ser consistente, mas flexível e adaptável de acordo com o contexto de quem a utiliza.
 
-Eficiência e Clareza
-++++++++++++++++++++
+## Eficiência e Clareza
 
 É importante que os processos dos serviços sejam simples e eficazes, com informações organizadas e estruturadas para solucionar de forma rápida e clara as necessidades dos usuários. Informações importantes e essenciais para o uso dos serviços devem ser sempre priorizadas. A eficiência precisa ser alcançada sem prejudicar a compreensão do usuário (pode ser mais adequado um maior número de etapas se as informações e o processo do serviço ficarem mais claros para o usuário, por exemplo).
 
-Acessibilidade
-++++++++++++++
+## Acessibilidade
 
 O sistema de serviços deve cumprir as diferentes necessidades de acessibilidade, atendendo às orientações do e-MAG - Modelo de Acessibilidade em Governo Eletrônico - e, principalmente, considerar os diferentes usos e acessos ao portal.
 
-Reutilização
-++++++++++++
+## Reutilização
 
 Interfaces digitais dos sites, aplicativos e sistemas de governo devem utilizar componentes existentes sempre que possível. Caso haja necessidade de criar um novo, os padrões visuais e funcionais devem ser respeitados.
 
-Colaboração
-+++++++++++
+## Colaboração
 
 O aprimoramento contínuo dos padrões apresentados pelo Design System deve ser incremental, colaborativo e contínuo, baseado nas necessidades dos cidadãos e na experiência de aplicação já adquirida.
 
-Boas Práticas
-+++++++++++++
+## Boas Práticas
 
 Boas Práticas de estruturação de Serviços foram revistas com o objetivo de garantir uma melhoria no atendimento aos cidadãos.
 

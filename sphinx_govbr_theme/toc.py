@@ -1,5 +1,5 @@
 from docutils import nodes
-from sphinx.addnodes import compact_paragraph
+from sphinx.addnodes import compact_paragraph, toctree
 import json
 import os
 from sphinx.util import logging
@@ -48,7 +48,7 @@ class TreeGenerator():
                             'is_path' : not item['refuri'],
                             'classes' : sub['classes'] if 'classes' in sub else [],
                             'pagename' : pname,
-                            'anchor' : '' if not item['anchorname'] else item['anchorname'],
+                            'anchor' : None if not item['anchorname'] else item['anchorname'],
                             'id' : self.uid,
                         }
                         self.uid = self.uid + 1
@@ -165,3 +165,72 @@ class TreeGenerator():
     def get_root(self):
         return self.root
 
+
+def toc_to_dicts(toctree_node):
+    """
+    Convert a Sphinx toctree node into a hierarchy of Python dicts.
+
+    Returns:
+        list of dicts:
+        {
+            "title": str,
+            "url": str,
+            "children": [...]
+        }
+    """
+
+    def extract_ref(refnode):
+        """Extract title + URL from a reference node."""
+        title = refnode.astext()
+
+        # Sphinx stores internal links as refuri or anchor-like targets
+        url = refnode.get("refuri")
+
+        # fallback for internal documents
+        #if not url:
+        #    docname = refnode.get("reftarget")
+        #    if docname:
+        #        url = builder.get_relative_uri("", docname)
+
+        return title, url or "#"
+
+    def walk(node):
+        items = []
+
+        for child in node:
+            # Each entry is usually a list_item
+            if isinstance(child, nodes.list_item):
+                entry = {
+                    "title": None,
+                    "url": None,
+                    "children": []
+                }
+
+                for sub in child:
+
+                    if isinstance(sub, compact_paragraph) and len(sub.children) == 1:
+                        sub = sub.children[0]
+                        if isinstance(sub, nodes.reference):
+                            title, url = extract_ref(sub)
+                            entry["title"] = title
+                            entry["url"] = url
+
+                    # Nested TOC (sub-toctree)
+                    elif isinstance(sub, nodes.bullet_list):
+                        entry["children"] = walk(sub)
+
+                if entry["title"] is not None:
+                    items.append(entry)
+
+        return items
+
+    # TOC root is usually a bullet_list or container
+    if isinstance(toctree_node, nodes.bullet_list):
+        return walk(toctree_node)
+
+    # fallback: search inside
+    #bullet_lists = toctree_node.traverse(nodes.bullet_list)
+    #if bullet_lists:
+    #    return walk(bullet_lists[0])
+
+    return []
