@@ -24,6 +24,8 @@
         <div class="main-content pl-sm-3 mt-4" id="main-content">
             {{- govbr_body if govbr_body else body -}}
 
+            <hr class="mb-4 mt-4"/>
+
             {%- if show_child_topics and govbr_local_toc_map %}
             <div class="toctree-wrapper compound">
                 <p class="caption" role="heading"><span class="caption-text">{{ _('Topics in this section') }}:</span></p>
@@ -34,6 +36,48 @@
                 </ul>
             </div>
             {% endif %}
+
+{#
+            {% if prev or next %}
+                <div class="toctree-wrapper compound">
+                    <p class="caption" role="heading">
+                        <span class="caption-text">{{ _('Related topics') }}:</span>
+                    </p>
+                    <ul>
+                        {% if prev %}
+                            <li class="toctree-l1"><span><strong>{{ _('Previous topic') }}:</strong> <a class="reference internal" href="{{ prev.link|e }}">{{ prev.title|striptags|e }}</a></span></li>
+                        {% endif %}
+                        {% if next %}
+                            <li class="toctree-l1"><span><strong>{{ _('Next topic') }}:</strong> <a class="reference internal" href="{{ next.link|e }}">{{ next.title|striptags|e }}</a></span></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            {% endif %}
+#}
+
+        {% if pagename != master_doc %}
+            {% if prev and prev.link != govbr_parent.url %}
+                <div class="toctree-wrapper compound">
+                    <p class="caption" role="heading">
+                        <span class="caption-text">{{ _('Previous topic') }}:</span>
+                    </p>
+                    <ul>
+                        <li class="toctree-l1"><a class="reference internal" href="{{ prev.link|e }}">{{ prev.title|striptags|e }}</a></li>
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if next %}
+                <div class="toctree-wrapper compound">
+                    <p class="caption" role="heading">
+                        <span class="caption-text">{{ _('Next topic') }}:</span>
+                    </p>
+                    <ul>
+                        <li class="toctree-l1"><a class="reference internal" href="{{ next.link|e }}">{{ next.title|striptags|e }}</a></li>
+                    </ul>
+                </div>
+            {% endif %}
+
             {% if theme_show_parent_topic and govbr_parent %}
                 <div class="toctree-wrapper compound">
                     <p class="caption" role="heading">
@@ -44,31 +88,7 @@
                     </ul>
                 </div>
             {% endif %}
-
-            <div class="content-footer">
-                {#
-                {%- if prev or next %}
-                    <div class="topic-navigation">
-                        <div class="nav-entry">
-                            {%- if prev %}
-                            <a href="{{ prev.link|e }}" class="nav-link">
-                                <div>{{ _('Previous topic') }}</div>
-                                <div class="nav-label">{{ prev.title|striptags|e }}</div>
-                            </a>
-                            {% endif %}
-                        </div>
-                        <div class="nav-entry">
-                            {%- if next %}
-                            <a href="{{ next.link|e }}" class="nav-link">
-                                <div>{{ _('Next topic') }}</div>
-                                <div class="nav-label">{{ next.title|striptags|e }}</div>
-                            </a>
-                            {% endif %}
-                        </div>
-                    </div>
-                {% endif %}
-                #}
-            </div>
+        {% endif %}
         </div>
     </div>
 {% endblock %}

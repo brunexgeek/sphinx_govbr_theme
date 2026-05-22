@@ -61,8 +61,13 @@ h6:hover .headerlink {
 
 /* TOC and search results */
 
+.toctree-wrapper ul > li > span strong {
+    font-weight: var(--font-weight-semi-bold);
+}
+
 @media (min-width: 576px) {
     .toctree-wrapper ul > li a,
+    .toctree-wrapper ul > li > span,
     #search-results ul > li a {
         font-size: var(--font-size-scale-up-01);
         margin-bottom: var(--spacing-scale-base);
@@ -80,4 +85,24 @@ h6:hover .headerlink {
 
 #main-content a.br-button span {
     margin-top: -.25em;
+}
+
+#main-content section > h1,
+#main-content section > h2,
+#main-content section > h3,
+#main-content section > h4,
+#main-content section > h5,
+#main-content section > h6 {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+#main-content section > h1 > a:hover,
+#main-content section > h2 > a:hover,
+#main-content section > h3 > a:hover,
+#main-content section > h4 > a:hover,
+#main-content section > h5 > a:hover,
+#main-content section > h6 > a:hover {
+    background-image: none !important;
 }

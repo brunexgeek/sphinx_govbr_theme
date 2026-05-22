@@ -1,6 +1,14 @@
 (how-to-start)=
-
 # Como começar
+
+```{toctree}
+:hidden:
+
+what-i-need
+principles
+concepts
+community
+```
 
 O Padrão Digital de Governo (também chamado de Design System do Governo do Brasil) é a sua bússola para navegar pelo universo do design de serviços públicos em todas as esferas (federal, estadual e municipal). Aqui, unimos eficiência, acessibilidade e estética para criar experiências digitais que transformam a interação do cidadão com o Estado.
 
@@ -21,14 +29,3 @@ Principais razões para adotar um Design System são:
 * **Inovação:** com a operação diária facilitada pelo uso de padrões, as equipes podem dedicar mais tempo à inovação e ao aprimoramento do produto.
 
 Em resumo, um Design System é um investimento na base de um produto digital, garantindo que ele seja construído sobre uma fundação sólida e coesa que oferece uma ótima experiência para o usuário e facilita o trabalho das equipes envolvidas.
-
-```{toctree}
-:hidden:
-
-what-i-need
-principles
-concepts
-community
-```
-
-
