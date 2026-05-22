@@ -1,4 +1,5 @@
 let toc_root = null;
+let page_header = null;
 
 function update_active(scroll) {
     if (toc_root == null) {
@@ -28,60 +29,66 @@ document.addEventListener("DOMContentLoaded", function(event){
     document.querySelectorAll('.rst-content a.external').forEach(link => {
         link.setAttribute('target', '_blank');
     });
-    // set event listeners to all 'expand' hyperlinks
-    document.querySelectorAll('div.cc-expand-icon.icon-down').forEach(element => {
+    // set event listeners open submenus
+    document.querySelectorAll('button.br-button.arrow').forEach(element => {
         element.addEventListener('click', event => {
             const id = event.currentTarget.getAttribute('data-id', null);
             if (id != null) {
-                document.querySelector('#cc-toc-children-' + id).style.display = "block";
-                document.querySelector('#cc-expand-' + id).style.display = "none";
-                document.querySelector('#cc-collapse-' + id).style.display = "block";
+                let submenu = document.querySelector('#submenu-' + id)
+                if (submenu) {
+                    submenu.style.visibility = 'visible';
+                    submenu.classList.value = 'on';
+                    submenu.setAttribute('aria-hidden', 'false');
+                    event.currentTarget.setAttribute('aria-expanded', 'true');
+                }
             }
         })
     });
-    // set event listeners to all 'collapse' hyperlinks
-    document.querySelectorAll('div.cc-expand-icon.icon-up').forEach(element => {
+    // set event listeners to close submenus
+    document.querySelectorAll('button.backButton').forEach(element => {
         element.addEventListener('click', event => {
             const id = event.currentTarget.getAttribute('data-id', null);
             if (id != null) {
-                document.querySelector('#cc-toc-children-' + id).style.display = "none";
-                document.querySelector('#cc-expand-' + id).style.display = "block";
-                document.querySelector('#cc-collapse-' + id).style.display = "none";
+                let submenu = document.querySelector('#submenu-' + id)
+                if (submenu) {
+                    submenu.style.visibility = 'hidden';
+                    submenu.classList.value = 'off';
+                    submenu.setAttribute('aria-hidden', 'true');
+                    document.querySelector('#expand-' + id)?.setAttribute('aria-expanded', 'false');
+                }
             }
         })
     });
-    // set event listeners to all header menu items
-    document.querySelectorAll('#cc-menu-bar .bx--header__menu-title').forEach(element => {
-        element.addEventListener('click', event => {
-            const expanded = event.currentTarget.getAttribute('aria-expanded') === 'true';
-            event.currentTarget.setAttribute('aria-expanded', !expanded);
-        });
-    });
-    // set event listeners to all paging buttons (blog index)
-    document.querySelectorAll('#blog .navigation input').forEach(element => {
-        element.addEventListener('click', event => {
-            // adjust button selection
-            document.querySelectorAll('#blog .navigation input').forEach(element => {
-                element.classList.remove('selected');
-            });
 
-            // select the correct page
-            const page = event.currentTarget.getAttribute('data-page', 1);
-            document.querySelectorAll('#blog .blogposts .page').forEach(element => {
-                const current = element.getAttribute('data-page');
-                if (current && current == page)
-                    element.style.display = 'block';
-                else
-                    element.style.display = 'none';
-            });
-            event.currentTarget.classList.add('selected');
-        });
+    page_header = document.querySelector('header');
+        window.onscroll = () => {
+        if (page_header && window.pageYOffset > page_header.offsetHeight) {
+            if (!page_header.classList.contains('sticky'))
+                page_header.classList.add('sticky', 'compact')
+        } else {
+            if (page_header.classList.contains('sticky'))
+                page_header.classList.remove('sticky', 'compact')
+        }
+    }
+
+    document.querySelector('#show-navigation')?.addEventListener("click", () => {
+        document.getElementById('menu-navigation').style.display = 'block'
     });
+
+    document.querySelectorAll('button[data-dismiss="menu"]').forEach(btn =>
+        btn.addEventListener('click',() =>
+            document.getElementById('menu-navigation').style.display = 'none'
+        )
+    );
+
     // select the TOC item for the current page; this is only necessary for URLs with anchor
-    update_active(true);
+    //update_active(true);
+    console.info('Done!');
 });
 
 window.addEventListener("hashchange", () => {
   update_active();
 });
+
+
 

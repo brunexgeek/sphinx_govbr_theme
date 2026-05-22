@@ -1,20 +1,26 @@
-<div class="br-menu" id="main-navigation">
+<div id="menu-navigation" class="br-menu" style="display: none">
     <div class="menu-container">
         <div class="menu-panel">
             <div class="menu-header">
-                <div class="menu-title"><img src="{{ pathto('_static/images/govbr.svg', 1) }}"/><span>{{ project|striptags|e }}</span></div>
+                <div class="menu-title"><img src="{{ pathto('_static/images/govbr.svg', 1) }}" /><span>{{ project|striptags|e }}</span></div>
                 <div class="menu-close">
                     <button class="br-button circle" type="button" aria-label="Fechar o menu" data-dismiss="menu"><i class="fas fa-times" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
-            {% include "partials/toc.html" %}
+            <div class="menu-body">
+                <div class="sidebar">
+                    {% import "partials/toc.html" as nav with context %}
+                    {{ nav.generate_navigation(govbr_toc_map, 'float') }}
+                </div>
+            </div>
             <div class="menu-footer">
+                <div class="divider"></div>
                 <div class="menu-links">
                     {% if theme_header_extra_links %}
-                        {% for item in theme_header_extra_links %}
-                            <a href="{{ item.url }}"><span class="mr-1">{{ item.title }}</span><i class="fas fa-external-link-square-alt" aria-hidden="true"></i></a>
-                        {% endfor %}
+                    {% for item in theme_header_extra_links %}
+                    <a href="{{ item.url }}"><span class="mr-1">{{ item.title }}</span><i class="fas fa-external-link-square-alt" aria-hidden="true"></i></a>
+                    {% endfor %}
                     {% endif %}
                 </div>
                 {# <div class="social-network">
@@ -23,10 +29,11 @@
                 </div> #}
                 <div class="menu-info">
                     {% if theme_content_license and theme_content_license.name and theme_content_license.url %}
-                        <div class="text-center text-down-01">Todo o conteúdo deste site está publicado sob a licença
-                                <a target="_blank" href="{{ theme_content_license.url }}">{{ theme_content_license.name }}</a></div>
-                        </div>
-                    {% endif %}
+                    <div class="text-center text-down-01">Todo o conteúdo deste site está publicado sob a licença
+                        <a target="_blank" href="{{ theme_content_license.url }}">{{ theme_content_license.name }}</a>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
         <div class="menu-scrim" data-dismiss="menu" tabindex="0"></div>

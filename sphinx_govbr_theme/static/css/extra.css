@@ -1,23 +1,7 @@
-#sidebar-navigation {
-    display: none;
-}
+
 
 @media (min-width: 576px) {
-    #sidebar-navigation {
-        display: block;
-        position: sticky;
-        top: 88px;
-        overflow-y: scroll;
-        height: 84vh;
-    }
-
-    #main-navigation {
-        display:none;
-    }
-}
-
-@media (min-width: 576px) {
-    #navigation {
+    #show-navigation {
         display: none;
     }
 }

@@ -28,7 +28,7 @@ html_permalinks_icon = '<i class="fas fa-link" aria-hidden="true"></i>'
 html_theme_options = {
     'show_child_topics': True,
     'show_parent_topic': True,
-    'toc_pruning' : True,
+    'toc_only_pages' : False,
     'signature' : 'Governo Federal',
     'header_extra_links': [
         {

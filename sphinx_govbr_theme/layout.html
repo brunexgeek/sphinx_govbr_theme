@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
 </head>
 <body>
+  {% include "partials/main-menu.html" %}
   <div class="template-base">
     <nav class="br-skiplink" role="menubar">
       <a class="br-item" href="#main-content" role="menuitem" accesskey="1">Ir para o conteúdo <span aria-hidden="true">(1/4)</span> <span aria-hidden="true" class="br-tag text ml-1">1</span></a>
@@ -30,7 +31,6 @@
       {% include "partials/header.html" %}
     </header>
     <main class="d-flex flex-fill mb-5" id="main">
-      {% include "partials/main-menu.html" %}
       <div class="container-lg">
         <div class="row">
           {% block page_menu %}
@@ -52,8 +52,8 @@
       </div>
     </footer>
   </div>
-  <script src="{{ pathto('_static/js/core-init.js', 1) }}"></script>
   <script src="{{ pathto('_static/js/core-lite.js', 1) }}"></script>
+  <script src="{{ pathto('_static/js/theme.js', 1) }}"></script>
   {%- for scriptfile in script_files %}
     {{ js_tag(scriptfile) }}
   {%- endfor %}

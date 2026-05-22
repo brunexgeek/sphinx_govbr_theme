@@ -3,6 +3,7 @@ inherit = "basic"
 stylesheets = [
     "css/core-lite.css",
     "css/rawline.css",
+    "css/menu.css",
     "css/extra.css"
 ]
 
@@ -18,3 +19,4 @@ project_logo = ''
 signature = ''
 content_license = { 'name' = 'Creative Commons Atribuição-SemDerivações 4.0', 'url' = 'https://creativecommons.org/licenses/by-nd/4.0/deed.pt-br' }
 toc_pruning = false
+toc_only_pages = false

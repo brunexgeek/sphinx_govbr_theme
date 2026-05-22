@@ -1,56 +1,79 @@
-{%- macro generate_toc_item(item) -%}
-<li class="{% for x in item.classes %}{{ x }} {% endfor %} {% if item.is_path %}active{% endif %}">
-    {%- if item.children -%}
-        <a class="menu-item" href="#" role="treeitem"><span class="content">
-            {% if item.caption %}
-                {{ item.caption|striptags|e }}
-            {% else %}
-                {{ item.title|striptags|e }}
-            {% endif %}
-        </span></a>
-        <ul class="{% for x in item.children[0].classes %}{{ x }} {% endfor %}">
-            <a class="menu-item divider {% if item.is_active %}active{% endif %}" href="{{ item.url }}" role="treeitem"><span class="content">{{ item.title|striptags|e }}</span></a>
-            {%- for sub in item.children %}
-                {{- generate_toc_item(sub) }}
-            {%- endfor %}
-        </ul>
-    {%- else -%}
-        {% if not item.anchor %}
-            <a class="menu-item divider {% if item.is_active %}active{% endif %}" href="{{ item.url }}" role="treeitem"><span class="content">{{ item.title|striptags|e }}</span></a>
-        {% endif %}
-    {%- endif %}
-</li>
-{%- endmacro -%}
+{% macro generate_navigation_item(item, suffix) %}
+    {% set vns = namespace(visible_submenu=false, children=0) %}
 
-<!-- {{ govbr_toc_map }} -->
-
-<nav aria-label="{{ _('Table of Contents') }}" class="menu-body">
-    <a class="menu-item divider {% if pagename == master_doc %}active{% endif %}" href="{{ pathto(master_doc) }}" role="treeitem"><span class="content">Página inicial</span></a>
-    {%- if govbr_toc_map -%}
-        {%- for item in govbr_toc_map %}
-                {%- if item.children -%}
-                    <div class="menu-folder drop-menu {% if item.is_path %}active{% endif %}">
-                        <a class="menu-item" href="#" role="treeitem">
-                            {% if item.caption %}
-                            <span class="content">{{ item.caption|striptags|e }}</span>
-                            {% else %}
-                            <span class="content">{{ item.title|striptags|e }}</span>
-                            {% endif %}
-                        </a>
-                        <ul class="{% for x in item.children[0].classes %}{{ x }} {% endfor %}">
-                            {% if item.pagename %}
-                            <a class="menu-item" href="{{ item.url }}" role="treeitem"><span class="content">{{ item.title|striptags|e }}</span></a>
-                            {% endif %}
-                            {%- for sub in item.children %}
-                                {{- generate_toc_item(sub) }}
-                            {%- endfor %}
-                        </ul>
-                    </div>
-                {% else %}
-                    <a class="menu-item divider {% if item.is_active %}active{% endif %}" href="{{ item.url }}" role="treeitem">
-                        <span class="content">{{ item.title|striptags|e }}</span>
-                    </a>
-                {%- endif %}
-        {%- endfor %}
+    {# is the current item active? #}
+    {% if item.is_active %}
+        {% set vns.visible_submenu = true %}
     {% endif %}
-</nav>
+
+    {%- for sub in item.children %}
+        {# count the amount of pages within the children #}
+        {% if not sub.anchor %}
+            {% set vns.children = vns.children + 1 %}
+        {%- endif -%}
+
+        {# check if the active item is within the children #}
+        {% if sub.is_active or sub.is_path %}
+            {% set vns.visible_submenu = true %}
+        {%- endif -%}
+        <!-- {{ sub.anchor }}    {{ vns.children }} -->
+    {%- endfor -%}
+
+    {% if not theme_toc_only_pages %}
+        {% set vns.children = item.children|length %}
+    {%- endif -%}
+
+    {%- if not item.title -%}
+        {%- for sub in item.children %}
+            {{- generate_navigation_item(sub, suffix) }}
+        {%- endfor %}
+    {%- elif vns.children > 0 -%}
+        <li class="sub{% if item.is_active %} active{% endif %}">
+            <a {% if item.is_active %}aria-current="page"{% endif %} class="link{% if item.is_active %} active{% endif %}" href="{{ item.url }}">{{ item.title|striptags|e }}</a>
+            <span class="br-divider vertical div"></span>
+            <button id="expand-{{ item.id }}-{{ suffix }}" type="button" class="br-button circle mx-1 arrow" aria-expanded="false" aria-haspopup="true" data-id="{{ item.id }}-{{ suffix }}">
+                <i class="fa-solid fa-angle-right"></i>
+                <span class="sr-only">Abrir {{ item.title|striptags|e }}</span>
+            </button>
+            <div id="submenu-{{ item.id }}-{{ suffix }}"
+                {% if vns.visible_submenu %}
+                    class="on"
+                {% else %}
+                    class="off" style="visibility: hidden;" aria-hidden="true"
+                {% endif %}
+            >
+                <ul>
+                    <li class="back">
+                        <button type="button" class="backButton" data-id="{{ item.id }}-{{ suffix }}">
+                            <span class="arrow-back">
+                                <i class="fa-solid fa-angle-left"></i>
+                            </span>
+                            Voltar
+                        </button>
+                    </li>
+                    <li class="parentitem {% if item.is_active %} active{% endif %}"><a {% if item.is_active %}aria-current="page"{% endif %} class="link" href="{{ item.url }}">{{ item.title|striptags|e }}</a></li>
+                    {%- for sub in item.children %}
+                        {% if not theme_toc_only_pages or not sub.anchor %}
+                            {{- generate_navigation_item(sub, suffix) }}
+                        {%- endif %}
+                    {%- endfor %}
+                </ul>
+            </div>
+        </li>
+    {% else %}
+        <li class="leaf{% if item.is_active %} active{% endif %}"><a class="link" href="{{ item.url }}">{{ item.title|striptags|e }}</a></li>
+    {%- endif %}
+{% endmacro %}
+
+{% macro generate_navigation(items, suffix) %}
+<div class="rooton">
+    <ul>
+        <li class="leaf{% if pagename == master_doc %} active{% endif %}"><a class="link" href="{{ pathto(master_doc) }}">Página inicial</a></li>
+        {%- if items -%}
+            {%- for item in items %}
+                {{ generate_navigation_item(item, suffix) }}
+            {%- endfor %}
+        {% endif %}
+    </ul>
+</div>
+{% endmacro %}

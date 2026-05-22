@@ -7,7 +7,6 @@
 what-i-need
 principles
 concepts
-community
 ```
 
 O Padrão Digital de Governo (também chamado de Design System do Governo do Brasil) é a sua bússola para navegar pelo universo do design de serviços públicos em todas as esferas (federal, estadual e municipal). Aqui, unimos eficiência, acessibilidade e estética para criar experiências digitais que transformam a interação do cidadão com o Estado.

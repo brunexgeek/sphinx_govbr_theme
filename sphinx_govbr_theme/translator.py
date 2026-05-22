@@ -1,5 +1,6 @@
 from sphinx.writers.html5 import HTML5Translator
 from docutils import nodes
+from sphinx.locale import _
 
 def is_govbr_component(node):
     return 'br_component' in node['classes']
@@ -51,11 +52,8 @@ class DesignSystemTranslator(HTML5Translator):
         else:
             super().visit_reference(node)
 
-
-
     def depart_reference(self, node):
         if is_govbr_component(node):
             self.body.append("</span></a>")
         else:
             super().depart_reference(node)
-
