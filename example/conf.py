@@ -4,8 +4,6 @@ import os
 import re
 from typing import TYPE_CHECKING
 
-extensions = ["myst_parser"]
-
 coverage_statistics_to_report = coverage_statistics_to_stdout = True
 
 project = 'Padrão Digital de Governo'
@@ -16,6 +14,12 @@ release = version = "3.7.0"
 show_authors = True
 nitpicky = True
 show_warning_types = True
+
+extensions = ["myst_parser"]
+myst_enable_extensions = ["substitution"]
+myst_substitutions = {
+    "project": project,
+}
 
 html_theme = 'sphinx_govbr_theme'
 modindex_common_prefix = ['sphinx.']
