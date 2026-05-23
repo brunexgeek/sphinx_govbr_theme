@@ -22,6 +22,14 @@
         {% endif %}
 
         <div class="main-content pl-sm-3 mt-4" id="main-content">
+            {% if pagename == master_doc %}
+            {# hide TOC captions because we also hide in the sidebar #}
+            <style type="text/css">
+                #main-content section > .toctree-wrapper { margin-top: 3em; }
+                #main-content section > .toctree-wrapper + .toctree-wrapper { margin-top: 0; }
+                #main-content section > .toctree-wrapper .caption { display: none; margin-top: 2em; }
+            </style>
+            {% endif%}
             {{- govbr_body if govbr_body else body -}}
 
             {% set vns = namespace() %}

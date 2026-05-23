@@ -90,3 +90,41 @@ h6:hover .headerlink {
 #main-content section > h6 > a:hover {
     background-image: none !important;
 }
+
+#main-content section code .pre {
+    background: transparent;
+    margin: unset;
+    padding: unset;
+    color: var(--green-cool-vivid-70);
+}
+
+#main-content section table.docutils {
+    margin-bottom: var(--spacing-scale-2x);
+}
+
+#main-content section table.docutils,
+#main-content section table.docutils p,
+#main-content section table.docutils a {
+    font-size: var(--font-size-scale-base);
+}
+
+#main-content section table.docutils p:last-child {
+    margin-bottom: 0;
+}
+
+#main-content section table.docutils th > * {
+    font-weight: var(--font-weight-semi-bold);
+}
+
+#main-content section div.highlight pre {
+    font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+    margin: var(--spacing-scale-2x) 0 var(--spacing-scale-2x);
+}
+
+#main-content section span.xref {
+    color: var(--red-cool-vivid-60);
+    text-decoration-style: wavy;
+    text-decoration-color: var(--red-cool-vivid-60);
+    text-decoration-thickness: 1px;
+    text-decoration-line: underline;
+}

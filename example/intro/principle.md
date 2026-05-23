@@ -8,7 +8,7 @@
 
 ## Experiência Única
 
-Os serviços digitais do governo se propõem a atender os cidadãos como uma central única, um balcão de atendimento, que ofereça soluções para diferentes necessidades. Devem, portanto, compartilhar e seguir os mesmos padrões estruturais e visuais. A experiência precisa conferir confiança aos usuários, diminuindo sua curva de aprendizado. A interface deve ser consistente, mas flexível e adaptável de acordo com o contexto de quem a utiliza.
+Os serviços digitais do governo se propõem a atender os cidadãos como uma central única, um balcão de atendimento, que ofereça soluções para diferentes necessidades. Devem, portanto, compartilhar e seguir os mesmos padrões estruturais e visuais. A experiência precisa conferir `confiança` aos usuários, diminuindo sua curva de aprendizado. A interface deve ser consistente, mas flexível e adaptável de acordo com o contexto de quem a utiliza.
 
 ## Eficiência e Clareza
 
