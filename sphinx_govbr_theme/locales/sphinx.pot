@@ -23,3 +23,25 @@ msgstr ""
 #: ../layout.html:30
 msgid "Version"
 msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "What are you looking for?"
+msgstr ""
+
+msgid "Quick access"
+msgstr ""
+
+msgid "Toolbar"
+msgstr ""
+
+msgid "Close search"
+msgstr ""
+
+msgid "Show search box"
+msgstr ""
+
+msgid "Home page"
+msgstr ""
+

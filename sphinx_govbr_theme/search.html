@@ -21,12 +21,21 @@
     </div>
         </div>
     </noscript>
-    <div class="br-message info">
-        <div class="icon"><i aria-hidden="true" class="fas fa-lg fa-info-circle"></i></div>
-        <div class="content">
-            <p>{% trans trimmed %}Searching for multiple words only shows matches that contain all words.{% endtrans %}</p>
+    <div id="multiword" hidden>
+        <div class="br-message info">
+            <div class="icon"><i aria-hidden="true" class="fas fa-lg fa-info-circle"></i></div>
+            <div class="content">
+                {# do not change a thing in this translation string, otherwise it wont match #}
+                <p>{{ _('Searching for multiple words only shows matches that contain\n    all words.') }}</p>
+            </div>
         </div>
     </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const term = params.get('q');
+        if (term && term.trim().split(/\s+/).length > 1)
+            document.querySelector('#multiword').removeAttribute('hidden');
+    </script>
     <p><span id="search-progress"></span></p>
     <div id="search-results"></div>
 </div>

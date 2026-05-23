@@ -48,7 +48,7 @@
                             <span class="arrow-back">
                                 <i class="fa-solid fa-angle-left"></i>
                             </span>
-                            Voltar
+                            {{ _('Back') }}
                         </button>
                     </li>
                     <li class="parentitem {% if item.is_active %} active{% endif %}"><a {% if item.is_active %}aria-current="page"{% endif %} class="link" href="{{ item.url }}">{{ item.title|striptags|e }}</a></li>

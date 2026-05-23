@@ -24,3 +24,24 @@ msgstr "Tema principal"
 #: ../layout.html:30
 msgid "Version"
 msgstr "Versión"
+
+msgid "Back"
+msgstr "Volver"
+
+msgid "What are you looking for?"
+msgstr "¿Qué estás buscando?"
+
+msgid "Quick access"
+msgstr "Acceso rápido"
+
+msgid "Toolbar"
+msgstr "Barra de herramientas"
+
+msgid "Close search"
+msgstr "Cerrar búsqueda"
+
+msgid "Show search box"
+msgstr "Mostrar búsqueda"
+
+msgid "Home page"
+msgstr "Página principal"
