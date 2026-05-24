@@ -9,10 +9,8 @@
                 </div>
             </div>
             <div class="menu-body">
-                <div class="sidebar">
-                    {% import "partials/toc.html" as nav with context %}
-                    {{ nav.generate_navigation(govbr_toc_map, 'float') }}
-                </div>
+                {% import "partials/toc.html" as nav with context %}
+                {{ nav.generate_navigation(govbr_toc_map, 'float') }}
             </div>
             <div class="menu-footer">
                 <div class="divider"></div>

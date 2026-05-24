@@ -2,9 +2,7 @@
 inherit = "basic"
 stylesheets = [
     "css/core-lite.css",
-    "css/rawline.css",
-    "css/menu.css",
-    "css/extra.css"
+    "css/styles.css"
 ]
 
 [options]

@@ -1,0 +1,387 @@
+.fa-solid {
+  font-family: "Font Awesome 5 Free";
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: var(--fa-display,inline-block);
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+}
+
+/*a:not(:disabled):hover {
+  background-image: none;
+  transition: all var(--br-state-hover-duration-in-default) var(--br-state-hover-easing-in-default);
+}*/
+
+.menu-content
+{
+    position: relative;
+    overflow: hidden;
+    /*width: 100%;*/
+    /*margin-top: 1em;*/
+    flex: 1 0 0;
+
+
+  .addon {
+    display: flex;
+  }
+  .link {
+    flex: 1 1;
+    padding: var(--spacing-scale-2x) var(--spacing-scale-4x);
+    background-color: var(--menu-background-submenu);
+    cursor: pointer;
+  }
+  li.active > .link {
+      font-weight: 600;
+  }
+  .link:hover {
+    text-decoration: none;
+  }
+  .backButton {
+    font-weight: 600;
+  }
+  button:focus-visible {
+    outline-offset: var(--focus-offset);
+  }
+  .pending {
+    flex: 1 1;
+    padding: var(--spacing-scale-2x) var(--spacing-scale-4x);
+    background-color: var(--menu-background-submenu);
+    cursor: pointer;
+    color: var(--color-review-state-pending-dark) !important;
+  }
+  .pending:hover {
+    text-decoration: none;
+  }
+  .private {
+    flex: 1 1;
+    padding: var(--spacing-scale-2x) var(--spacing-scale-4x);
+    background-color: var(--menu-background-submenu);
+    cursor: pointer;
+    color: var(--color-review-state-private-dark) !important;
+  }
+  .private:hover {
+    text-decoration: none;
+  }
+  .div {
+    height: var(--spacing-scale-3x);
+    align-self: center !important;
+  }
+  .br-divider.vertical {
+      margin-left: .4em;
+  }
+  .on {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    overflow: visible;
+    width: 100%;
+    background-color: var(--background);
+    transition: left 400ms 0ms ease-in-out;
+    z-index: 2;
+    /*left: 40px;*/
+  }
+  .on ul {
+    overflow: auto;
+    flex: 1 1;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none;
+  }
+  .on ul::-webkit-scrollbar {
+    width: 8px;
+    background-color: var(--color-secondary-02);
+  }
+  .on ul::-webkit-scrollbar-track {
+    border: 1px solid var(--color-secondary-04);
+    border-radius: 8px;
+    background: var(--gray-cool-4);
+  }
+  .on ul::-webkit-scrollbar-thumb {
+    border: 1px solid var(--color-secondary-04);
+    border-radius: 8px;
+    background-color: var(--color-secondary-03);
+  }
+  .on ul::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary-01);
+  }
+  .on ul::-webkit-scrollbar-thumb:active {
+    background-color: var(--color-primary-default);
+  }
+  .on > ul > li > .link,
+  .on > ul > li > .div,
+  .on > ul > li > .addon {
+    opacity: 1;
+    transition: opacity 300ms 0ms linear;
+  }
+  .prev {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    overflow: visible;
+    width: 100%;
+    background-color: var(--background);
+    transition: left 400ms 0ms ease-in-out;
+    left: 0;
+  }
+  .prev ul {
+    overflow: auto;
+    flex: 1 1;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none;
+  }
+  .prev ul::-webkit-scrollbar {
+    width: 8px;
+    background-color: var(--color-secondary-02);
+  }
+  .prev ul::-webkit-scrollbar-track {
+    border: 1px solid var(--color-secondary-04);
+    border-radius: 8px;
+    background: var(--gray-cool-4);
+  }
+  .prev ul::-webkit-scrollbar-thumb {
+    border: 1px solid var(--color-secondary-04);
+    border-radius: 8px;
+    background-color: var(--color-secondary-03);
+  }
+  .prev ul::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary-01);
+  }
+  .prev ul::-webkit-scrollbar-thumb:active {
+    background-color: var(--color-primary-default);
+  }
+  .prev > ul > li > .link,
+  .prev > ul > li > .div,
+  .prev > ul > li > .addon {
+    opacity: 1;
+    transition: opacity 300ms 0ms linear;
+  }
+  .prev > ul > li > .link,
+  .prev > ul > li > .div,
+  .prev > ul > li > .addon {
+    opacity: 0;
+  }
+  .off {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    overflow: visible;
+    width: 100%;
+    background-color: var(--background);
+    left: 400px;
+    transition: left 400ms 0ms ease-in-out;
+  }
+  .off ul {
+    overflow: auto;
+    flex: 1 1;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none;
+  }
+  .off ul::-webkit-scrollbar {
+    width: 8px;
+    background-color: var(--color-secondary-02);
+  }
+  .off ul::-webkit-scrollbar-track {
+    border: 1px solid var(--color-secondary-04);
+    border-radius: 8px;
+    background: var(--gray-cool-4);
+  }
+  .off ul::-webkit-scrollbar-thumb {
+    border: 1px solid var(--color-secondary-04);
+    border-radius: 8px;
+    background-color: var(--color-secondary-03);
+  }
+  .off ul::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary-01);
+  }
+  .off ul::-webkit-scrollbar-thumb:active {
+    background-color: var(--color-primary-default);
+  }
+  .off > ul > li > .link,
+  .off > ul > li > .div,
+  .off > ul > li > .addon {
+    opacity: 1;
+    transition: opacity 300ms 0ms linear;
+  }
+  .rooton {
+    /*position: relative;*/
+    top: 0;
+    bottom: 0;
+    display: flex;
+    overflow: visible;
+    width: 100%;
+    background-color: var(--background);
+    transition: left 400ms 0ms ease-in-out;
+    left: 0;
+  }
+  .rooton ul {
+    overflow: auto;
+    flex: 1 1;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none;
+  }
+  .rooton ul::-webkit-scrollbar {
+    width: 8px;
+    background-color: var(--color-secondary-02);
+  }
+  .rooton ul::-webkit-scrollbar-track {
+    border: 1px solid var(--color-secondary-04);
+    border-radius: 8px;
+    background: var(--gray-cool-4);
+  }
+  .rooton ul::-webkit-scrollbar-thumb {
+    border: 1px solid var(--color-secondary-04);
+    border-radius: 8px;
+    background-color: var(--color-secondary-03);
+  }
+  .rooton ul::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary-01);
+  }
+  .rooton ul::-webkit-scrollbar-thumb:active {
+    background-color: var(--color-primary-default);
+  }
+  .rooton > ul > li > .link,
+  .rooton > ul > li > .div,
+  .rooton > ul > li > .addon {
+    opacity: 1;
+    transition: opacity 300ms 0ms linear;
+  }
+  .leaf a.link,
+  .sub a.link,
+  button {
+    --focus-offset: calc(var(--spacing-scale-half)*-1) !important;
+  }
+  .leaf {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--gray-10);
+    background-color: var(--gray-2);
+    font-size: var(--font-size-scale-base) !important;
+    line-height: var(--font-line-height-low) !important;
+  }
+  .sub {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--gray-10);
+    background-color: var(--gray-2);
+    font-size: var(--font-size-scale-base) !important;
+    line-height: var(--font-line-height-low) !important;
+  }
+  .parentitem {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--gray-10);
+    background-color: var(--gray-2);
+    font-size: var(--font-size-scale-base) !important;
+    line-height: var(--font-line-height-low) !important;
+  }
+  .parentitem > a {
+    flex: 1 1;
+    padding: var(--spacing-scale-2x) var(--spacing-scale-4x) var(--spacing-scale-2x) var(--spacing-scale-baseh);
+    background-color: var(--menu-background-submenu);
+    cursor: pointer;
+    /*font-weight: 600;*/
+  }
+  .parentitem > a:hover {
+    text-decoration: none;
+  }
+  .arrow {
+    display: flex;
+    width: var(--button-medium);
+    height: var(--button-medium);
+    align-items: center;
+    justify-content: center;
+    /*border-radius: 8px;*/
+    margin-right: var(--spacing-scale-half);
+    color: var(--interactive);
+    cursor: pointer;
+  }
+  .back button {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--gray-10);
+    background-color: var(--gray-2);
+    font-size: var(--font-size-scale-base) !important;
+    line-height: var(--font-line-height-low) !important;
+    width: 100%;
+    padding: var(--spacing-scale-baseh) 0;
+    border: 0;
+    border-radius: 0;
+    background-color: var(--gray-10);
+    box-shadow: none;
+    cursor: pointer;
+    text-align: left;
+  }
+  .back button:hover {
+    background-color: var(--gray-20);
+  }
+  .back button:focus-visible {
+    outline-color: var(--focus);
+    outline-style: var(--focus-style);
+    outline-width: var(--focus-width);
+  }
+  .arrow-back {
+    width: var(--spacing-scale-4x);
+    min-width: var(--spacing-scale-4x);
+    text-align: center;
+  }
+}
+
+#menu-navigation {
+    /*display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100vh;
+    width: 100%;*/
+    position: fixed;
+    z-index: var(--z-index-layer-3);
+    background-color: var(--bg-color);
+}
+
+#sidebar-navigation {
+  display: none;
+}
+
+@media (min-width: 576px) {
+    #sidebar-navigation {
+        display: flex;
+  flex-direction: column;
+        position: sticky;
+        top: 88px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 76vh;
+        z-index: 0;
+        width: 25em; /* TODO revise this*/
+    }
+
+    #menu-navigation {
+      display: none !important;
+    }
+}
+
+.br-menu {
+  align-content: space-between;
+}
+
+.br-menu .menu-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.br-menu .menu-container {
+  display: block !important;
+}

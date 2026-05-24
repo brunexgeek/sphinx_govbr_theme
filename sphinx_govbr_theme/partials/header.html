@@ -66,10 +66,10 @@
         </div>
         </div>
         <div class="header-search" id="main-searchbox">
-        <form id="rtd-search-form" action="{{ pathto('search.html', 1) }}" method="get">
+        <form action="{{ pathto('search.html', 1) }}" method="get">
             <div class="br-input has-icon">
                 <label for="searchbox">{{ _('search this documentation') }}</label>
-                <input id="searchbox" type="text" name="q" placeholder="{{ _('What are you looking for?') }}" />
+                <input id="searchbox" type="text" name="q" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="{{ _('What are you looking for?') }}" />
                 <input type="hidden" name="check_keywords" value="yes">
                 <button class="br-button circle small" type="submit" aria-label="{{ _('Search') }}"><i class="fas fa-search" aria-hidden="true"></i></button>
             </div>

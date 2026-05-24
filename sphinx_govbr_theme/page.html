@@ -14,7 +14,7 @@
             <ol class="crumb-list" role="list">
                 <li class="crumb home"><a class="br-button circle" href="{{ pathto(master_doc) }}"><span class="sr-only">Página inicial</span><i class="fas fa-home"></i></a></li>
                 {%- for doc in parents -%}
-                    <li class="crumb"><i class="icon fas fa-chevron-right"></i><a href="{{ doc.link|e }}">{{ doc.title|striptags|e }}</a></li>
+                    <li class="crumb"><i class="icon fas fa-chevron-right"></i><a title="{{ doc.title }}" href="{{ doc.link|e }}">{{ doc.title|striptags|e }}</a></li>
                 {% endfor %}
                 <li class="crumb" data-active="active"><i class="icon fas fa-chevron-right"></i><span tabindex="0" aria-current="page">{{ title|striptags|e }}</span></li>
             </ol>

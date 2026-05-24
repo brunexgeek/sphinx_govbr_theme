@@ -1,0 +1,126 @@
+@import "rawline.scss";
+@import "menu.scss";
+
+@media (min-width: 576px) {
+    #show-navigation {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    #fake-navigation {
+        display: none;
+        cursor: pointer;
+    }
+    .br-menu {
+       --menu-logo: 24px;
+    }
+}
+
+.br-header .header-logo img {
+    min-width: 60px;
+}
+
+/* TOC and search results */
+
+.toctree-wrapper {
+    & .caption {
+        font-weight: var(--font-weight-semi-bold);
+    }
+    & ul > li > span strong {
+        font-weight: var(--font-weight-semi-bold);
+    }
+}
+
+@media (min-width: 576px) {
+    .toctree-wrapper ul > li a,
+    .toctree-wrapper ul > li > span,
+    #search-results ul > li a {
+        font-size: var(--font-size-scale-up-01);
+        margin-bottom: var(--spacing-scale-base);
+        display: inline-block;
+    }
+}
+
+.highlight pre {
+    text-wrap: wrap;
+}
+
+#main-content {
+    a.br-button span {
+        margin-top: -.25em;
+    }
+}
+
+#main-content section {
+
+    & > h1,
+    & > h2,
+    & > h3,
+    & > h4,
+    & > h5,
+    & > h6 {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+
+        & > a:hover {
+            background-image: none !important;
+        }
+
+        a.headerlink {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 100ms ease-in-out;
+            font-size: .8em;
+            margin-left: .2em;
+        }
+
+        &:hover a.headerlink {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    & code .pre {
+        background: transparent;
+        margin: unset;
+        padding: unset;
+        color: var(--green-cool-vivid-70);
+    }
+
+    table.docutils {
+        margin-bottom: var(--spacing-scale-2x);
+
+        &, p, a {
+            font-size: var(--font-size-scale-base);
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        th > * {
+           font-weight: var(--font-weight-semi-bold);
+        }
+    }
+
+    div.highlight pre {
+        font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+        margin: var(--spacing-scale-2x) 0 var(--spacing-scale-2x);
+    }
+
+    span.xref {
+        color: var(--red-cool-vivid-60);
+        text-decoration-style: wavy;
+        text-decoration-color: var(--red-cool-vivid-60);
+        text-decoration-thickness: 1px;
+        text-decoration-line: underline;
+    }
+}
+
+@media (min-width: 576px) {
+    .br-breadcrumb {
+        font-size: var(--font-size-scale-base);
+    }
+}
