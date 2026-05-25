@@ -11,7 +11,7 @@ if [ "$1" == "--container" ]; then
     cd $POD_THEME_PATH
     pip install -e .
     cd /docs
-    /bin/bash
+    sphinx-autobuild -v -a --watch /opt/sphinx_govbr_theme/sphinx_govbr_theme /docs /docs-build
     exit 0
 fi
 
@@ -37,4 +37,5 @@ docker run -it --rm \
     -e DOCS_BUILD=$WORK_DIR \
     -p 8000:8000 \
     --network host \
+    --name govbr-sphinx \
     $SPHINX_IMAGE $POD_THEME_PATH/run-docker.sh --container

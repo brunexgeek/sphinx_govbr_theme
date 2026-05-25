@@ -45,3 +45,18 @@ msgstr ""
 msgid "Home page"
 msgstr ""
 
+msgid "Go to content"
+msgstr ""
+
+msgid "Go to menu"
+msgstr ""
+
+msgid "Go to search"
+msgstr ""
+
+msgid "Go to footer"
+msgstr ""
+
+msgid "All content of this site is published under license"
+msgstr ""
+
