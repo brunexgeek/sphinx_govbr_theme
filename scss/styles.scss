@@ -53,6 +53,7 @@
 }
 
 #main-content section {
+    scroll-margin-top: 7.5em;
 
     & > h1,
     & > h2,
@@ -123,4 +124,26 @@
     .br-breadcrumb {
         font-size: var(--font-size-scale-base);
     }
+}
+
+.br-header .header-search .br-input input:not(:focus),
+.br-header.compact .header-search .br-input input:not(:focus) {
+  background: var(--color-secondary-03);
+}
+
+.br-header[data-sticky] {
+    transition: none;
+}
+
+.br-header.secondary {
+    padding-bottom: 0;
+    box-shadow: none;
+    z-index: var(--z-index-layer-2);
+}
+
+.br-header.primary {
+    padding-top: 0;
+    position: sticky;
+    top: 0;
+    z-index: var(--z-index-layer-1);
 }

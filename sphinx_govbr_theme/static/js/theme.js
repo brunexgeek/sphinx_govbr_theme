@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function(event){
         })
     });
 
-    page_header = document.querySelector('header');
+    /*page_header = document.querySelector('header');
         window.onscroll = () => {
         if (page_header && window.pageYOffset > page_header.offsetHeight) {
             if (!page_header.classList.contains('sticky'))
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function(event){
             if (page_header.classList.contains('sticky'))
                 page_header.classList.remove('sticky', 'compact')
         }
-    }
+    }*/
 
     document.querySelector('#show-navigation')?.addEventListener("click", () => {
         document.getElementById('menu-navigation').style.display = 'block'
