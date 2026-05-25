@@ -142,9 +142,9 @@
 .menu-content {
   position: relative;
   overflow: hidden;
-  /*width: 100%;*/
-  /*margin-top: 1em;*/
   flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
 }
 .menu-content .addon {
   display: flex;
@@ -335,15 +335,13 @@
   transition: opacity 300ms 0ms linear;
 }
 .menu-content .rooton {
-  /*position: relative;*/
-  top: 0;
-  bottom: 0;
   display: flex;
-  overflow: visible;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
   width: 100%;
   background-color: var(--background);
   transition: left 400ms 0ms ease-in-out;
-  left: 0;
 }
 .menu-content .rooton ul {
   overflow: auto;
