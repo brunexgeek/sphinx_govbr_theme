@@ -44,13 +44,6 @@ html_theme_options = {
             'url': 'https://www.gov.br/governodigital/pt-br/privacidade-e-seguranca/ppsi-2.0'
         }
     ],
-    'header_toolbar': [
-        {
-            'title': 'Modo escuro',
-            'id': 'btn-dark-mode',
-            'icon': 'fa-adjust'
-        }
-    ],
     'footer_statement' : """This example documentation uses some content from Wikipedia. Wikipedia is hosted by the Wikimedia Foundation, a non-profit organization that also hosts a range of other projects. Text is available under the Creative Commons Attribution-ShareAlike 4.0 License; additional terms may apply.""",
     'show_menu_bar': False,
     'project_subtitle' : project_subtitle

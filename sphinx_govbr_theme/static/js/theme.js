@@ -72,13 +72,15 @@ document.addEventListener("DOMContentLoaded", function(event){
     }*/
 
     document.querySelector('#show-navigation')?.addEventListener("click", () => {
-        document.getElementById('menu-navigation').style.display = 'block'
+        document.getElementById('menu-overlay').removeAttribute('hidden');
+        document.getElementById('menu-navigation').removeAttribute('hidden');
     });
 
     document.querySelectorAll('button[data-dismiss="menu"]').forEach(btn =>
-        btn.addEventListener('click',() =>
-            document.getElementById('menu-navigation').style.display = 'none'
-        )
+        btn.addEventListener('click',() => {
+            document.getElementById('menu-overlay').setAttribute('hidden', '');
+            document.getElementById('menu-navigation').setAttribute('hidden', '');
+        })
     );
 
     // select the TOC item for the current page; this is only necessary for URLs with anchor

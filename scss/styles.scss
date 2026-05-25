@@ -1,22 +1,26 @@
 @import "rawline.scss";
 @import "menu.scss";
 
-@media (min-width: 576px) {
+/* Menu button adjustments */
+@media (min-width: $menu-breakpoint) {
     #show-navigation {
         display: none;
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: $menu-breakpoint) {
     #fake-navigation {
         display: none;
         cursor: pointer;
     }
+}
+
+/* Menu logo adjustments */
+@media (max-width: $menu-breakpoint) {
     .br-menu {
        --menu-logo: 24px;
     }
 }
-
 .br-header .header-logo img {
     min-width: 60px;
 }

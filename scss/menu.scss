@@ -1,3 +1,5 @@
+$menu-breakpoint: 992px;
+
 .fa-solid {
   font-family: "Font Awesome 5 Free";
   -moz-osx-font-smoothing: grayscale;
@@ -337,27 +339,21 @@
 }
 
 #menu-navigation {
-    /*display: flex;
-    flex-direction: column;
-    top: 0;
-    left: 0;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 100vh;
-    width: 100%;*/
     position: fixed;
     z-index: var(--z-index-layer-3);
     background-color: var(--bg-color);
+    box-shadow: var(--surface-offset-md) var(--surface-offset-none) var(--surface-blur-lg) rgba(var(--surface-shadow-color), var(--surface-opacity-xs));
+    max-width: 576px;
 }
 
 #sidebar-navigation {
   display: none;
 }
 
-@media (min-width: 576px) {
+@media (min-width: $menu-breakpoint) {
     #sidebar-navigation {
         display: flex;
-  flex-direction: column;
+        flex-direction: column;
         position: sticky;
         top: 7.5em;
         overflow-y: scroll;
@@ -370,6 +366,16 @@
     #menu-navigation {
       display: none !important;
     }
+}
+
+#menu-overlay {
+  background-color: rgba(0,0,0,.4);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: var(--z-index-layer-3);
 }
 
 .br-menu {
