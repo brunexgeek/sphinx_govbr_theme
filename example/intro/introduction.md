@@ -1,4 +1,9 @@
-(Design para todos)=
+---
+description: 'O Padrão Digital de Governo apresenta os padrões de interface que devem ser seguidos por designers e desenvolvedores.'
+card_image: ../screenshot.webp
+---
+
+(introduction-section)=
 
 # Sobre o Design System
 

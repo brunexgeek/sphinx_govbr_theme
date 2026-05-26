@@ -634,4 +634,15 @@
   z-index: var(--z-index-layer-1);
 }
 
+.main-content .br_cardlist a.br-card {
+  text-decoration: none;
+  --color-rgb: var(--blue-cool-40-rgb);
+}
+.main-content .br_cardlist a.br-card .card-img {
+  margin-bottom: var(--spacing-scale-2x);
+}
+.main-content .br_cardlist .row [class^=col] {
+  display: flex;
+}
+
 /*# sourceMappingURL=styles.css.map */

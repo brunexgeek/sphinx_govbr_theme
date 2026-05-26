@@ -151,3 +151,17 @@
     top: 0;
     z-index: var(--z-index-layer-1);
 }
+
+.main-content .br_cardlist {
+    a.br-card {
+        text-decoration: none;
+        --color-rgb: var(--blue-cool-40-rgb);
+
+        .card-img {
+            margin-bottom: var(--spacing-scale-2x);
+        }
+    }
+    .row [class^="col"] {
+        display: flex;
+    }
+}

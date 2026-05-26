@@ -4,6 +4,7 @@ from .toc import TreeGenerator, toc_to_dicts
 import os
 import re
 import json
+from pathlib import Path
 from sphinx.util import logging
 from sphinx.util.console import colorize
 import time
@@ -11,6 +12,8 @@ from datetime import datetime
 from typing import Any, Type
 from .translator import DesignSystemTranslator
 from .roles import BrLinkRole
+from .extensions.cardlist import setup_extensions
+from docutils import nodes
 
 logger = logging.getLogger(__name__)
 
@@ -125,9 +128,9 @@ def custom_metadata_processing(app, doctree, docname):
     else:
         metadata["last_updated"] = None
 
-
 def setup(app):
     app.add_role("br_link", BrLinkRole())
+    setup_extensions(app)
     app.set_translator("html", DesignSystemTranslator)
 
     # add Sphinx message catalog for translations; it seems Sphinx expects the catalog name to be 'sphinx'
