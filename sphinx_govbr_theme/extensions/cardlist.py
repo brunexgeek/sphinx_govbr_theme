@@ -11,27 +11,6 @@ class cardlist(nodes.General, nodes.Element):
     pass
 
 class BrCardListDirective(SphinxDirective):
-    """
-    Usage:
-
-    .. br_cardlist::
-
-       [
-         {
-           "title": "Getting Started",
-           "xref": "getting-started",
-           "image": "/_static/img/start.png",
-           "description": "Learn the basics and set up your environment."
-         },
-         {
-           "title": "API Reference",
-           "xref": "api/index",
-           "image": "/_static/img/api.png",
-           "description": "Detailed API documentation and examples."
-         }
-       ]
-    """
-
     has_content = True
 
     def run(self):
@@ -54,7 +33,7 @@ class BrCardListDirective(SphinxDirective):
             if 'xref' in item:
                 current = {'xref': item['xref']}
             else:
-                required = ["title", "url", "image", "description"]
+                required = ["title", "url", "description"]
                 for field in required:
                     if field not in item:
                         raise self.error(
@@ -63,6 +42,9 @@ class BrCardListDirective(SphinxDirective):
                 current = {}
                 for name in required:
                     current[name] = item[name]
+                if 'image' in item:
+                    current['image'] = item['image']
+
             filtered.append(current)
 
         node = cardlist()

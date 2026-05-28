@@ -6,12 +6,10 @@ stylesheets = [
 ]
 
 [options]
-sidebar_always_visible = false
 show_child_topics = false
 show_parent_topic = false
 header_extra_links = []
 header_toolbar = []
-footer_statement= ''
 project_subtitle = ''
 project_logo = ''
 signature = ''
