@@ -45,7 +45,6 @@ html_theme_options = {
         }
     ],
     'footer_statement' : """This example documentation uses some content from Wikipedia. Wikipedia is hosted by the Wikimedia Foundation, a non-profit organization that also hosts a range of other projects. Text is available under the Creative Commons Attribution-ShareAlike 4.0 License; additional terms may apply.""",
-    'show_menu_bar': False,
     'project_subtitle' : project_subtitle
 }
 

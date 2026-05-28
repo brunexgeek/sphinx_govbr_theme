@@ -1,3 +1,7 @@
+---
+description: Os fundamentos visuais asseguram uma linguagem visual unificada, incluindo elementos essenciais padronizados, como cores, tipografias, espaçamentos, ícones, entre outros, para garantir consistência e clareza.
+---
+
 (concepts)=
 
 # Fundamentos Visuais

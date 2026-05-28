@@ -11,7 +11,10 @@ if [ "$1" == "--container" ]; then
     cd $POD_THEME_PATH
     pip install -e .
     cd /docs
-    sphinx-autobuild -v -a --watch /opt/sphinx_govbr_theme/sphinx_govbr_theme /docs /docs-build
+    sphinx-autobuild -v -a \
+        --watch /opt/sphinx_govbr_theme/sphinx_govbr_theme \
+        --re-ignore '.*/__pycache__/.*' \
+        /docs /docs-build
     exit 0
 fi
 

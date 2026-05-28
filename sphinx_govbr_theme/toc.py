@@ -1,11 +1,33 @@
+from typing import Any, Type
+import sphinx.addnodes
+from sphinx.environment.adapters.toctree import TocTree
 from docutils import nodes
 from sphinx.addnodes import compact_paragraph, toctree
-import json
-import os
 from sphinx.util import logging
 from sphinx.util.console import colorize
+import json
+import os
+import pickle
+import time
+from pathlib import Path
+
+GOVBR_CACHE_NAME = 'govbr_toc_cache'
+GOVBR_HAS_TOC = '_govbr__has_toc'
+GOVBR_TOC_PRUNING = 'toc_pruning'
 
 logger = logging.getLogger(__name__)
+
+class Clock:
+
+    def __init__(self, name):
+        self.name = name
+
+    def __enter__(self):
+        self.start = time.time()
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        end = time.time()
+        logger.info(f'{end} {colorize('blue',self.name)} took {'{:.6f}'.format(end - self.start)} seconds')
 
 class TreeGenerator():
 
@@ -129,7 +151,6 @@ class TreeGenerator():
                 }
                 self.global_toc[0]['children'] = self.global_toc[0]['children'][0]['children']
 
-
     def _extract_local_toc(self, pagename : str, masterdoc : str):
         if not self.global_toc:
             return
@@ -149,10 +170,6 @@ class TreeGenerator():
                     }
                     self.local_toc.append(entry)
 
-
-    def prune(prefix : str):
-        pass
-
     def get_global_toc(self):
         return self.global_toc
 
@@ -166,71 +183,122 @@ class TreeGenerator():
         return self.root
 
 
-def toc_to_dicts(toctree_node):
-    """
-    Convert a Sphinx toctree node into a hierarchy of Python dicts.
+def get_config(app, name : str, value : Any, value_type : Type):
+    if name in app.config.html_theme_options:
+        temp = app.config.html_theme_options[name]
+        if not isinstance(temp, value_type):
+            raise ApplicationError("Configuration option '{name}' must be a value of type '{valuetype}'")
+        return temp
+    return value
 
-    Returns:
-        list of dicts:
-        {
-            "title": str,
-            "url": str,
-            "children": [...]
+def _on_html_page_context(app, pagename, templatename, context, doctree):
+    if pagename in ['genindex']:
+        return
+
+    # if the page is up to date and its TOC is cached, skip TOC generation
+    cache = app.govbr_toc_cache
+    outdated = set(app.builder.get_outdated_docs())
+    if cache and pagename not in outdated and pagename in cache:
+        computed = cache.get(pagename)
+        context['govbr_toc_map'] = computed['govbr_toc_map']
+        context['govbr_local_toc_map'] = computed['govbr_local_toc_map']
+        context['govbr_parent'] = computed['govbr_parent']
+        context['govbr_root'] = computed['govbr_root']
+        logger.info(f"retrieved '{pagename}' TOC information from cache")
+        return
+
+    # compute the TOC tree
+    with Clock('toctree.get_toctree_for'):
+        toctree = TocTree(app.env)
+        raw_toc = toctree.get_toctree_for(pagename, app.builder, False)
+        # TODO store the result from the first execution to reuse on other calls
+
+    # generate a custom TOC tree
+    with Clock('TreeGenerator'):
+        prune = get_config(app, GOVBR_TOC_PRUNING, False, bool)
+        gen = TreeGenerator(app.env, pagename, app.config.master_doc, raw_toc, prune)
+        govbr_toc_map = gen.get_global_toc()
+        if doctree and not doctree.get(GOVBR_HAS_TOC, False):
+            govbr_local_toc_map = gen.get_local_toc()
+        elif app.config.html_theme_options.get('show_child_topics', False):
+            logger.warning(f"ignoring local TOC for '{pagename}' because document has visible TOC")
+            govbr_local_toc_map = None
+        pageentry = gen.get_pageentry()
+        govbr_parent = pageentry['parent'] if pageentry and 'parent' in pageentry else None
+        govbr_root = gen.get_root()
+
+        computed = {
+            'govbr_toc_map': govbr_toc_map,
+            'govbr_local_toc_map': govbr_local_toc_map,
+            'govbr_parent': govbr_parent,
+            'govbr_root': govbr_root,
         }
+        cache[pagename] = computed
+        for key in computed:
+            context[key] = computed[key]
+
+
+def _on_doctree_read(app, doctree):
     """
+    Check whether the doctree contains a visible TOC.
+    """
+    it = doctree.findall(sphinx.addnodes.toctree)
+    doctree[GOVBR_HAS_TOC] = False
+    for node in it:
+        if 'hidden' in node and not bool(node['hidden']):
+            doctree[GOVBR_HAS_TOC] = True
+            break
 
-    def extract_ref(refnode):
-        """Extract title + URL from a reference node."""
-        title = refnode.astext()
+def _on_builder_inited(app):
+    """
+    Load the TOC cache.
+    """
+    app.govbr_toc_cache = load_toc_cache(app)
 
-        # Sphinx stores internal links as refuri or anchor-like targets
-        url = refnode.get("refuri")
+def _on_build_finished(app, exception):
+    """
+    Persist the TOC cache.
+    """
+    if exception is not None:
+        return
 
-        # fallback for internal documents
-        #if not url:
-        #    docname = refnode.get("reftarget")
-        #    if docname:
-        #        url = builder.get_relative_uri("", docname)
+    save_toc_cache(app, app.govbr_toc_cache)
 
-        return title, url or "#"
+def _on_purge_doc(app, env, docname):
+    if hasattr(env, 'govbr_toc_cache'):
+        app.govbr_toc_cache.pop(docname, None)
 
-    def walk(node):
-        items = []
+def get_toc_cache_path(app):
+    return Path(app.doctreedir) / 'govbr_toc_cache.pickle'
 
-        for child in node:
-            # Each entry is usually a list_item
-            if isinstance(child, nodes.list_item):
-                entry = {
-                    "title": None,
-                    "url": None,
-                    "children": []
-                }
+def load_toc_cache(app):
+    path = get_toc_cache_path(app)
+    if not path.exists():
+        return {}
+    try:
+        with path.open("rb") as f:
+            return pickle.load(f)
+    except Exception as exc:
+        app.warn(f"Failed to load TOC cache: {exc}")
+        return {}
 
-                for sub in child:
+def save_toc_cache(app, cache):
+    path = get_toc_cache_path(app)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp_path = path.with_suffix(".tmp")
 
-                    if isinstance(sub, compact_paragraph) and len(sub.children) == 1:
-                        sub = sub.children[0]
-                        if isinstance(sub, nodes.reference):
-                            title, url = extract_ref(sub)
-                            entry["title"] = title
-                            entry["url"] = url
+    try:
+        with tmp_path.open("wb") as f:
+            pickle.dump(cache, f, protocol=pickle.HIGHEST_PROTOCOL)
 
-                    # Nested TOC (sub-toctree)
-                    elif isinstance(sub, nodes.bullet_list):
-                        entry["children"] = walk(sub)
+        tmp_path.replace(path)
 
-                if entry["title"] is not None:
-                    items.append(entry)
+    except Exception as exc:
+        app.warn(f"Failed to save cache: {exc}")
 
-        return items
-
-    # TOC root is usually a bullet_list or container
-    if isinstance(toctree_node, nodes.bullet_list):
-        return walk(toctree_node)
-
-    # fallback: search inside
-    #bullet_lists = toctree_node.traverse(nodes.bullet_list)
-    #if bullet_lists:
-    #    return walk(bullet_lists[0])
-
-    return []
+def setup(app):
+    app.connect("builder-inited", _on_builder_inited)
+    app.connect("build-finished", _on_build_finished)
+    app.connect('html-page-context', _on_html_page_context)
+    app.connect("env-purge-doc", _on_purge_doc)
+    app.connect('doctree-read', _on_doctree_read)
