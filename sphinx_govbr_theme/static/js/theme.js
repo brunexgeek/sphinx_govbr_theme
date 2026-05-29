@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function(event){
         document.getElementById('menu-overlay').removeAttribute('hidden');
         document.getElementById('menu-navigation').removeAttribute('hidden');
     });
-    document.querySelectorAll('button[data-dismiss="menu"]').forEach(btn =>
+    document.querySelectorAll('[data-dismiss="menu"]').forEach(btn =>
         btn.addEventListener('click',() => {
             document.getElementById('menu-overlay').setAttribute('hidden', '');
             document.getElementById('menu-navigation').setAttribute('hidden', '');

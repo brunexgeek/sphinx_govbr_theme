@@ -20,6 +20,7 @@ $menu-breakpoint: 992px;
 {
   position: relative;
   overflow: hidden;
+  overscroll-behavior-y: contain;
   flex: 1 0 0;
   display: flex;
   flex-direction: column;
@@ -217,6 +218,7 @@ $menu-breakpoint: 992px;
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: scroll;
+    overscroll-behavior-y: contain;
     width: 100%;
     background-color: var(--background);
     transition: left 400ms 0ms ease-in-out;
@@ -353,8 +355,9 @@ $menu-breakpoint: 992px;
         flex-direction: column;
         position: sticky;
         top: 7.5em;
-        overflow-y: scroll;
         overflow-x: hidden;
+        overflow-y: scroll;
+        overscroll-behavior-y: contain;
         height: 76vh;
         z-index: 0;
         width: 25em; /* TODO revise this*/

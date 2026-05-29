@@ -1,4 +1,4 @@
-<div id="menu-overlay" hidden></div>
+<div id="menu-overlay" hidden data-dismiss="menu"></div>
 <div id="menu-navigation" class="br-menu" hidden>
     <div class="menu-container">
         <div class="menu-panel">
@@ -18,7 +18,7 @@
                 <div class="menu-links">
                     {%- if theme_header_extra_links %}
                     {%- for item in theme_header_extra_links %}
-                    <a href="{{ item.url }}"><span class="mr-1">{{ item.title }}</span><i class="fas fa-external-link-square-alt" aria-hidden="true"></i></a>
+                    <a target="_blank" href="{{ item.url }}"><span class="mr-1">{{ item.title }}</span><i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
                     {%- endfor %}
                     {%- endif %}
                 </div>

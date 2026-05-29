@@ -11,10 +11,10 @@ Por que unificar a experiência dos cidadãos brasileiros quando estão em conta
 ```{br_cardlist}
 [
     {
-        "title": "API Reference",
-        "url": "concepts",
+        "title": "Site oficial do Governo",
+        "url": "https://gov.br",
         "image": "screenshot.webp",
-        "description": "Detailed API documentation and examples."
+        "description": "O gov.br reúne, em um só lugar, serviços para o cidadão e informações sobre a atuação de todas as áreas do governo."
     },
     {
         "xref": "introduction-section"
