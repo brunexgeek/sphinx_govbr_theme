@@ -4,9 +4,6 @@
 <!DOCTYPE html>
 <html lang="{{ lang_attr }}" {% if content_root %} data-content_root="{{ content_root }}" {% endif %}>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   {%- if pagename == master_doc and title == project %}
   <title>{{ project|e }}</title>
   {%- else %}
@@ -54,7 +51,6 @@
       </div>
     </footer>
   </div>
-  {# <script src="{{ pathto('_static/js/core-lite.js', 1) }}"></script> #}
   <script src="{{ pathto('_static/js/theme.js', 1) }}"></script>
   {%- for scriptfile in script_files %}
     {{ js_tag(scriptfile) }}
