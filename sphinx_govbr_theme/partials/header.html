@@ -2,47 +2,47 @@
     <div class="container-lg">
         <div class="header-top mb-3">
             <div class="header-logo">
-                {% if theme_project_logo %}
+                {%- if theme_project_logo %}
                 <img src="{{ pathto(theme_project_logo, 1) }}" alt="gov.br" />
-                {% else %}
+                {%- else %}
                 <img src="{{ pathto('_static/images/govbr.svg', 1) }}" alt="gov.br" />
-                {% endif %}
-                {% if theme_signature %}
+                {%- endif %}
+                {%- if theme_signature %}
                 <span class="br-divider vertical"></span>
                 <div class="header-sign">{{ theme_signature }}</div>
-                {% endif %}
+                {%- endif %}
             </div>
             <div class="header-actions">
-                {% if theme_header_extra_links %}
+                {%- if theme_header_extra_links %}
                 <div class="header-links dropdown">
                     <div class="br-list">
                         <div class="header">
                             <div class="title">{{ _('Quick access') }}</div>
                         </div>
-                        {% for item in theme_header_extra_links %}
+                        {%- for item in theme_header_extra_links %}
                         <a class="br-item" target="_blank" href="{{ item.url }}">{{ item.title }}</a>
-                        {% endfor %}
+                        {%- endfor %}
                     </div>
                 </div>
-                {% endif %}
-                {% if theme_header_toolbar and theme_header_extra_links %}
+                {%- endif %}
+                {%- if theme_header_toolbar and theme_header_extra_links %}
                 <span class="br-divider vertical mx-half mx-sm-1"></span>
-                {% endif %}
-                {% if theme_header_toolbar %}
+                {%- endif %}
+                {%- if theme_header_toolbar %}
                 <div class="header-functions dropdown">
                     <div class="br-list">
                         <div class="header">
                             <div class="title">{{ _('Toolbar') }}</div>
                         </div>
-                        {% for item in theme_header_toolbar %}
+                        {%- for item in theme_header_toolbar %}
                         <div class="br-item">
                             <button class="br-button circle small" type="button" aria-label="{{ item.title }}" id="{{ item.id }}"><i class="fas {{ item.icon }}" aria-hidden="true"></i><span class="text">{{ item.title }}</span>
                             </button>
                         </div>
-                        {% endfor %}
+                        {%- endfor %}
                     </div>
                 </div>
-                {% endif %}
+                {%- endif %}
                 <div class="header-search-trigger">
                     <button class="br-button circle" type="button" aria-label="{{ _('Show search box') }}" data-toggle="search" data-target=".header-search"><i class="fas fa-search" aria-hidden="true"></i>
                     </button>

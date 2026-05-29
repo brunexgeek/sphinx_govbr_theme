@@ -1,4 +1,4 @@
 <div id="sidebar-navigation">
-    {% import "partials/toc.html" as nav with context %}
-    {{ nav.generate_navigation(govbr_toc_map, 'push') }}
+    {%- import "partials/toc.html" as nav with context %}
+    {{- nav.generate_navigation(govbr_toc_map, 'push') -}}
 </div>
