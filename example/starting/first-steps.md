@@ -5,7 +5,7 @@
 :hidden:
 
 what-i-need
-principles
+principles/index
 concepts
 ```
 

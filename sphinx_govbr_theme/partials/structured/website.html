@@ -1,0 +1,31 @@
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "{{ title }} | {{ project }}",
+    {%- if meta and meta.description %}
+    "description": "{{ meta.description|striptags|e }}",
+    {%- endif %}
+    {%- if theme_content_license and theme_content_license.name and theme_content_license.url %}
+    "license": "{{ theme_content_license.url }}",
+    {%- endif %}
+    "breadcrumb": {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {%- set vns = namespace(counter=1) %}
+            {%- set vns.counter = 1 %}
+            {%- for item in breadcrumbs %}
+            {
+                "@type": "ListItem",
+                "position": {{ vns.counter }},
+                "name": "{{ item.title|e }}",
+                "item": "{{ item.abs_link|default(item.link) }}"
+            },
+            {%- set vns.counter = vns.counter + 1 %}
+            {%- endfor %}
+        ],
+        "numberOfItems": {{ vns.counter }}
+    }
+}
+</script>
