@@ -1,27 +1,28 @@
 let toc_root = null;
-let page_header = null;
 
 function update_active(scroll) {
     if (toc_root == null) {
-        if ((toc_root = document.querySelector('.cc-toc-nav')) == null)
+        if ((toc_root = document.querySelector('#sidebar-navigation')) == null)
             return;
     }
-
     // get the current anchor
     let hash = window.location.hash;
     if (hash.length == 0)
         hash = '#';
-    // removes the attribute to every hyperlink
-    toc_root.querySelectorAll('.cc-toc-nav a[aria-current=true]').forEach(element => {
-        element.removeAttribute('aria-current');
-    });
     // set the attribute in the correct element
-    let element = toc_root.querySelector(`.cc-toc-nav a[href='${hash}'`);
-    if (element) {
-        element.setAttribute('aria-current', 'true');
+    let elements = toc_root.querySelectorAll(`li a[href='${hash}'`);
+    if (elements && elements.length > 0) {
+        // removes the attribute to every hyperlink
+        toc_root.querySelectorAll('li.active').forEach(element => {
+            element.classList.remove('active');
+        });
+    }
+    elements.forEach(element => {
+        element = element.closest('li');
+        element.classList.add('active');
         if (scroll)
             element.scrollIntoView({block: "center"});
-    }
+    });
 }
 
 document.addEventListener("DOMContentLoaded", function(event){
@@ -59,32 +60,18 @@ document.addEventListener("DOMContentLoaded", function(event){
             }
         })
     });
-
-    /*page_header = document.querySelector('header');
-        window.onscroll = () => {
-        if (page_header && window.pageYOffset > page_header.offsetHeight) {
-            if (!page_header.classList.contains('sticky'))
-                page_header.classList.add('sticky', 'compact')
-        } else {
-            if (page_header.classList.contains('sticky'))
-                page_header.classList.remove('sticky', 'compact')
-        }
-    }*/
-
     document.querySelector('#show-navigation')?.addEventListener("click", () => {
         document.getElementById('menu-overlay').removeAttribute('hidden');
         document.getElementById('menu-navigation').removeAttribute('hidden');
     });
-
     document.querySelectorAll('button[data-dismiss="menu"]').forEach(btn =>
         btn.addEventListener('click',() => {
             document.getElementById('menu-overlay').setAttribute('hidden', '');
             document.getElementById('menu-navigation').setAttribute('hidden', '');
         })
     );
-
     // select the TOC item for the current page; this is only necessary for URLs with anchor
-    //update_active(true);
+    update_active(true);
     console.info('Done!');
 });
 
