@@ -7,11 +7,11 @@ from sphinx.util.console import colorize
 import time
 from datetime import datetime
 from .translator import DesignSystemTranslator
-from .roles import BrLinkRole
-from .extensions.cardlist import setup_extensions
+from .extensions import setup as setup_extensions
 from docutils import nodes
 from urllib.parse import urljoin
 from pathlib import Path
+from .util import normalize_path
 
 logger = logging.getLogger(__name__)
 
@@ -33,55 +33,12 @@ def _on_doctree_resolved(app, doctree, docname):
     else:
         metadata["last_updated"] = None
 
-def normalize_sphinx_path(path: str) -> str:
-    """
-    Normalize a Sphinx-style abstract POSIX path (docname or URI-like),
-    resolving '.' and '..' without filesystem access.
-
-    Rules aligned with Sphinx docname semantics:
-    - '.' is ignored
-    - '..' pops previous segment if possible
-    - absolute paths cannot go above root
-    - relative paths preserve leading '..' if necessary
-    """
-
-    if path is None:
-        return ""
-
-    absolute = path.startswith("/")
-    parts = path.split("/")
-
-    stack = []
-
-    for part in parts:
-        if part == "" or part == ".":
-            continue
-
-        if part == "..":
-            if stack and stack[-1] != "..":
-                # normal backtracking
-                stack.pop()
-            else:
-                # cannot resolve further
-                # only allowed to accumulate for relative paths
-                if not absolute:
-                    stack.append("..")
-        else:
-            stack.append(part)
-
-    normalized = "/".join(stack)
-
-    if absolute:
-        return "/" + normalized if normalized else "/"
-
-    return normalized or "."
-
 def get_title_from_doctree(doctree):
     for node in doctree.traverse(nodes.title):
         return node.astext()
     return None
 
-def add_docname_to_parents(app, pagename, templatename, context, doctree):
+def generate_breadcrumbs(app, pagename, templatename, context, doctree):
     enriched = []
     base_url = context['theme_base_url'] if 'theme_base_url' in context else None
     if base_url and len(base_url) > 0 and base_url[len(base_url)-1] == '/':
@@ -100,7 +57,7 @@ def add_docname_to_parents(app, pagename, templatename, context, doctree):
         link = parent.get('link', '')
         if link.endswith('.html'):
             link = link[:-5]
-        docname = normalize_sphinx_path(os.path.join(os.path.dirname(pagename), link))
+        docname = normalize_path(os.path.join(os.path.dirname(pagename), link))
 
         enriched.append({
             **parent,
@@ -121,7 +78,6 @@ def _make_absolute_url(path, base):
     return urljoin(base, path)
 
 def setup(app):
-    app.add_role("br_link", BrLinkRole())
     app.set_translator("html", DesignSystemTranslator)
     setup_extensions(app)
     setup_toc(app)
@@ -134,7 +90,7 @@ def setup(app):
     app.add_html_theme('sphinx_govbr_theme', theme_path)
 
     app.connect("doctree-resolved", _on_doctree_resolved)
-    app.connect("html-page-context", add_docname_to_parents)
+    app.connect("html-page-context", generate_breadcrumbs)
 
     return {
         'version': '1.0.0',

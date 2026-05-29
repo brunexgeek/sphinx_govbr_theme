@@ -6,6 +6,10 @@ def is_govbr_component(node):
     return 'br_component' in node['classes']
 
 class DesignSystemTranslator(HTML5Translator):
+    """
+    Customize the translation of some nodes to the HTML hierarchy expected by
+    the Design System stylesheet.
+    """
 
     def visit_admonition(self, node, name=''):
         DANGER = ['danger', 'fa-times-circle']
