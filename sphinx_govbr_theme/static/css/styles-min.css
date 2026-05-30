@@ -648,4 +648,8 @@
   display: flex;
 }
 
-/*# sourceMappingURL=styles.css.map */
+.br-breadcrumb .crumb .icon {
+  color: var(--gray-30) !important; /* to satisfy WCAG contrast requirements */
+}
+
+/*# sourceMappingURL=styles-min.css.map */

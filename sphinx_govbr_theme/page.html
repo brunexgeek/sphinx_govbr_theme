@@ -1,97 +1,100 @@
 {%- extends "!layout.html" %}
 
-{% set show_child_topics = theme_show_child_topics if theme_show_child_topics else False %}
-{% set show_child_topics = meta.show_child_topics|lower != "false" if meta and meta.show_child_topics else show_child_topics %}
+{%- set show_child_topics = theme_show_child_topics if theme_show_child_topics else False %}
+{%- set show_child_topics = meta.show_child_topics|lower != "false" if meta and meta.show_child_topics else show_child_topics %}
 
-{% if not govbr_root %}
-    {% set govbr_root = {'title': project, 'url': pathto(master_doc)} %}
-{% endif%}
+{%- if not govbr_root %}
+    {%- set govbr_root = {'title': project, 'url': pathto(master_doc)} %}
+{%- endif%}
 
-{% block page_content %}
+{%- block page_content %}
 <div class="col mb-5">
-        {% if pagename != master_doc %}
+        {%- if pagename != master_doc %}
         <nav class="br-breadcrumb">
             <ol class="crumb-list" role="list">
-                <li class="crumb home"><a class="br-button circle" href="{{ pathto(master_doc) }}"><span class="sr-only">Página inicial</span><i class="fas fa-home"></i></a></li>
+                <li class="crumb home"><a class="br-button circle" title="{{ _('Home page') }}" href="{{ pathto(master_doc) }}"><span class="sr-only">{{ _('Home page') }}</span><i class="fas fa-home"></i></a></li>
                 {%- for doc in parents -%}
                     <li class="crumb"><i class="icon fas fa-chevron-right"></i><a title="{{ doc.title }}" href="{{ doc.link|e }}">{{ doc.title|striptags|e }}</a></li>
-                {% endfor %}
+                {%- endfor %}
                 <li class="crumb" data-active="active"><i class="icon fas fa-chevron-right"></i><span tabindex="0" aria-current="page">{{ title|striptags|e }}</span></li>
             </ol>
         </nav>
-        {% endif %}
+        {%- endif %}
 
-        <div class="main-content pl-sm-3 mt-4" id="main-content">
-            {% if pagename == master_doc %}
+        <article class="main-content pl-sm-3 mt-4" id="main-content">
+            {%- if pagename == master_doc %}
             {# hide TOC captions because we also hide in the sidebar #}
             <style type="text/css">
                 #main-content section > .toctree-wrapper { margin-top: 3em; }
                 #main-content section > .toctree-wrapper + .toctree-wrapper { margin-top: 0; }
                 #main-content section > .toctree-wrapper .caption { display: none; margin-top: 2em; }
             </style>
-            {% endif%}
+            {%- endif%}
+
             {{- govbr_body if govbr_body else body -}}
 
-            {% set vns = namespace() %}
-            {% set vns.show_children = show_child_topics and govbr_local_toc_map %}
-            {% set vns.show_parent = theme_show_parent_topic and govbr_parent %}
+            {%- set vns = namespace() %}
+            {%- set vns.show_children = show_child_topics and govbr_local_toc_map %}
+            {%- set vns.show_parent = theme_show_parent_topic and govbr_parent %}
 
-            {% if vns.show_children or vns.show_parent or (pagename != master_doc and (prev or next)) %}
+            {%- if vns.show_children or vns.show_parent or (pagename != master_doc and (prev or next)) %}
             <hr class="mb-4 mt-4"/>
-            {% endif %}
+            {%- endif %}
 
+            <section>
 
-            {%- if vns.show_children %}
-            <div class="toctree-wrapper compound">
-                <p class="caption" role="heading"><span class="caption-text">{{ _('Topics in this section') }}:</span></p>
-                <ul>
-                    {%- for item in govbr_local_toc_map -%}
-                        <li class="toctree-l1"><a class="reference internal" href="{{ item.url }}">{{ item.title }}</a></li>
-                    {%- endfor -%}
-                </ul>
-            </div>
-            {% endif %}
+                {%- if vns.show_children %}
+                <div class="toctree-wrapper compound">
+                    <p class="caption" role="heading" aria-level="2"><span class="caption-text">{{ _('Topics in this section') }}:</span></p>
+                    <ul>
+                        {%- for item in govbr_local_toc_map -%}
+                            <li class="toctree-l1"><a class="reference internal" href="{{ item.url }}">{{ item.title }}</a></li>
+                        {%- endfor -%}
+                    </ul>
+                </div>
+                {%- endif %}
 
-            {% if pagename != master_doc %}
-                {% if prev and govbr_parent and prev.link != govbr_parent.url %}
-                    <div class="toctree-wrapper compound">
-                        <p class="caption" role="heading">
-                            <span class="caption-text">{{ _('Previous topic') }}:</span>
-                        </p>
-                        <ul>
-                            <li class="toctree-l1"><a class="reference internal" href="{{ prev.link|e }}">
-                                {% if prev.link == pathto(master_doc) %}
-                                    {{ _('Home page') }}
-                                {% else %}
-                                    {{ prev.title|striptags|e }}
-                                {% endif %}
-                            </a></li>
-                        </ul>
-                    </div>
-                {% endif %}
+                {%- if pagename != master_doc %}
+                    {%- if prev and govbr_parent and prev.link != govbr_parent.url %}
+                        <div class="toctree-wrapper compound">
+                            <p class="caption" role="heading" aria-level="2">
+                                <span class="caption-text">{{ _('Previous topic') }}:</span>
+                            </p>
+                            <ul>
+                                <li class="toctree-l1"><a class="reference internal" href="{{ prev.link|e }}">
+                                    {%- if prev.link == pathto(master_doc) %}
+                                        {{ _('Home page') }}
+                                    {%- else %}
+                                        {{ prev.title|striptags|e }}
+                                    {%- endif %}
+                                </a></li>
+                            </ul>
+                        </div>
+                    {%- endif %}
 
-                {% if next %}
-                    <div class="toctree-wrapper compound">
-                        <p class="caption" role="heading">
-                            <span class="caption-text">{{ _('Next topic') }}:</span>
-                        </p>
-                        <ul>
-                            <li class="toctree-l1"><a class="reference internal" href="{{ next.link|e }}">{{ next.title|striptags|e }}</a></li>
-                        </ul>
-                    </div>
-                {% endif %}
+                    {%- if next %}
+                        <div class="toctree-wrapper compound">
+                            <p class="caption" role="heading" aria-level="2">
+                                <span class="caption-text">{{ _('Next topic') }}:</span>
+                            </p>
+                            <ul>
+                                <li class="toctree-l1"><a class="reference internal" href="{{ next.link|e }}">{{ next.title|striptags|e }}</a></li>
+                            </ul>
+                        </div>
+                    {%- endif %}
 
-                {% if vns.show_parent %}
-                    <div class="toctree-wrapper compound">
-                        <p class="caption" role="heading">
-                            <span class="caption-text">{{ _('Parent topic') }}:</span>
-                        </p>
-                        <ul>
-                            <li class="toctree-l1"><a class="reference internal" href="{{ govbr_parent.url }}">{{ govbr_parent.title }}</a></li>
-                        </ul>
-                    </div>
-                {% endif %}
-            {% endif %}
-        </div>
+                    {%- if vns.show_parent %}
+                        <div class="toctree-wrapper compound">
+                            <p class="caption" role="heading" aria-level="2">
+                                <span class="caption-text">{{ _('Parent topic') }}:</span>
+                            </p>
+                            <ul>
+                                <li class="toctree-l1"><a class="reference internal" href="{{ govbr_parent.url }}">{{ govbr_parent.title }}</a></li>
+                            </ul>
+                        </div>
+                    {%- endif %}
+                {%- endif %}
+            </section>
+        </article>
     </div>
-{% endblock %}
+{%- endblock %}

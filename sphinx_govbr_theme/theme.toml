@@ -1,8 +1,8 @@
 [theme]
 inherit = "basic"
 stylesheets = [
-    "css/core-lite.css",
-    "css/styles.css"
+    "css/core-lite-min.css",
+    "css/styles-min.css"
 ]
 
 [options]

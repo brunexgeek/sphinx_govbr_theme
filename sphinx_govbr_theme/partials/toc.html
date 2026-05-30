@@ -67,7 +67,7 @@
 <div id="menu-root-{{ suffix }}" class="menu-content">
     <div class="rooton">
         <ul>
-            <li class="leaf{% if pagename == master_doc %} active{% endif %}"><a class="link" href="{{ pathto(master_doc) }}">Página inicial</a></li>
+            <li class="leaf{% if pagename == master_doc %} active{% endif %}"><a class="link" href="{{ pathto(master_doc) }}">{{ _('Home page') }}</a></li>
             {%- if items -%}
                 {%- for item in items %}
                     {{- generate_navigation_item(item, suffix) }}
