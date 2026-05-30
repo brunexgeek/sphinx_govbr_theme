@@ -1,11 +1,15 @@
 import json
 import os
 from sphinx.util.osutil import copyfile as sphinx_copyfile
+from sphinx.errors import SphinxError
 from pathlib import Path
 from docutils import nodes
 from sphinx import addnodes
 from sphinx.util.docutils import SphinxDirective
 from sphinx.util.fileutil import copy_asset_file
+from sphinx.util import logging
+
+logger = logging.getLogger(__name__)
 
 class cardlist(nodes.General, nodes.Element):
     pass
@@ -78,6 +82,10 @@ def visit_cardlist_html(self, node):
     i = 0
     for item in node["items"]:
         if 'xref' in item:
+            if not isinstance(node[i] , nodes.reference):
+                logger.warn(f"Unresolved reference '{item['xref']}'; skipping card")
+                continue
+
             # infers the docname
             docname = node[i].get('refuri', '')
             if '#' in docname:
