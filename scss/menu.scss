@@ -1,4 +1,4 @@
-$menu-breakpoint: 992px;
+@import "variables.scss";
 
 .fa-solid {
   font-family: "Font Awesome 5 Free";
@@ -349,7 +349,7 @@ $menu-breakpoint: 992px;
   display: none;
 }
 
-@media (min-width: $menu-breakpoint) {
+@media (min-width: $breakpoint-md) {
     #sidebar-navigation {
         display: flex;
         flex-direction: column;
@@ -360,12 +360,24 @@ $menu-breakpoint: 992px;
         overscroll-behavior-y: contain;
         height: 76vh;
         z-index: 0;
-        width: 25em; /* TODO revise this*/
+        width: 25em;
     }
 
     #menu-navigation {
       display: none !important;
     }
+}
+
+@media (min-width: $breakpoint-lg) {
+  #sidebar-navigation {
+    width: 27em;
+  }
+}
+
+@media (min-width: $breakpoint-xl) {
+  #sidebar-navigation {
+    width: 30em;
+  }
 }
 
 #menu-overlay {

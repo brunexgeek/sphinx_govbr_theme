@@ -2,13 +2,13 @@
 @import "menu.scss";
 
 /* Menu button adjustments */
-@media (min-width: $menu-breakpoint) {
+@media (min-width: $breakpoint-md) {
     #show-navigation {
         display: none;
     }
 }
 
-@media (max-width: $menu-breakpoint) {
+@media (max-width: $breakpoint-md) {
     #fake-navigation {
         display: none;
         cursor: pointer;
@@ -16,7 +16,7 @@
 }
 
 /* Menu logo adjustments */
-@media (max-width: $menu-breakpoint) {
+@media (max-width: $breakpoint-md) {
     .br-menu {
        --menu-logo: 24px;
     }
@@ -167,5 +167,5 @@
 }
 
 .br-breadcrumb .crumb .icon {
-    color: var(--gray-30) !important; /* to satisfy WCAG contrast requirements */
+    color: var(--gray-30) !important;
 }

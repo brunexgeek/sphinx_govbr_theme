@@ -481,10 +481,20 @@
     overscroll-behavior-y: contain;
     height: 76vh;
     z-index: 0;
-    width: 25em; /* TODO revise this*/
+    width: 25em;
   }
   #menu-navigation {
     display: none !important;
+  }
+}
+@media (min-width: 1280px) {
+  #sidebar-navigation {
+    width: 27em;
+  }
+}
+@media (min-width: 1600px) {
+  #sidebar-navigation {
+    width: 30em;
   }
 }
 #menu-overlay {
@@ -649,7 +659,7 @@
 }
 
 .br-breadcrumb .crumb .icon {
-  color: var(--gray-30) !important; /* to satisfy WCAG contrast requirements */
+  color: var(--gray-30) !important;
 }
 
 /*# sourceMappingURL=styles-min.css.map */
