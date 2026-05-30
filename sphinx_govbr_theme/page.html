@@ -22,7 +22,12 @@
         {%- endif %}
 
         <article class="main-content pl-sm-3 mt-4" id="main-content">
-            {%- if pagename == master_doc %}
+            {%- set vns = namespace() %}
+            {%- set vns.show_children = show_child_topics and govbr_local_toc_map %}
+            {%- set vns.show_parent = theme_show_parent_topic and govbr_parent %}
+            {%- set vns.show_footer_lists = vns.show_children or vns.show_parent or (pagename != master_doc and (prev or next)) %}
+
+            {%- if pagename == master_doc and not vns.show_footer_lists %}
             {# hide TOC captions because we also hide in the sidebar #}
             <style type="text/css">
                 #main-content section > .toctree-wrapper { margin-top: 3em; }
@@ -33,14 +38,8 @@
 
             {{- govbr_body if govbr_body else body -}}
 
-            {%- set vns = namespace() %}
-            {%- set vns.show_children = show_child_topics and govbr_local_toc_map %}
-            {%- set vns.show_parent = theme_show_parent_topic and govbr_parent %}
-
-            {%- if vns.show_children or vns.show_parent or (pagename != master_doc and (prev or next)) %}
+            {%- if vns.show_footer_lists %}
             <hr class="mb-4 mt-4"/>
-            {%- endif %}
-
             <section>
 
                 {%- if vns.show_children %}
@@ -95,6 +94,7 @@
                     {%- endif %}
                 {%- endif %}
             </section>
+            {%- endif %}
         </article>
     </div>
 {%- endblock %}
