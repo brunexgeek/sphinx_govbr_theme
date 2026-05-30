@@ -6,11 +6,11 @@ from typing import TYPE_CHECKING
 
 coverage_statistics_to_report = coverage_statistics_to_stdout = True
 
-project = 'Padrão Digital de Governo'
-project_subtitle = 'Design System | Versão 3.7.0'
-copyright = '2026, Governo Federal'
+project = 'Amazônia Brasileira'
+project_subtitle = 'O que há de mas belo no mundo vem da natureza'
+copyright = '2026, sphinx-govbr-theme'
 language = 'pt_BR'
-release = version = "3.7.0"
+release = version = "1.0.0"
 show_authors = True
 nitpicky = True
 show_warning_types = True
@@ -33,7 +33,6 @@ html_theme_options = {
     'show_child_topics': True,
     'show_parent_topic': True,
     'toc_only_pages' : False,
-    'signature' : 'Governo Federal',
     'header_extra_links': [
         {
             'title': 'Design System do gov.br',
@@ -44,7 +43,6 @@ html_theme_options = {
             'url': 'https://www.gov.br/governodigital/pt-br/privacidade-e-seguranca/ppsi-2.0'
         }
     ],
-    'footer_statement' : """This example documentation uses some content from Wikipedia. Wikipedia is hosted by the Wikimedia Foundation, a non-profit organization that also hosts a range of other projects. Text is available under the Creative Commons Attribution-ShareAlike 4.0 License; additional terms may apply.""",
     'project_subtitle' : project_subtitle,
     'base_url' : html_baseurl
 }
