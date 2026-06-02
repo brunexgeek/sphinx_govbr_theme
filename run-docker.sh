@@ -3,6 +3,7 @@
 set -e
 
 BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+WORK_DIR=/tmp/sphinx_govbr_theme_build
 POD_THEME_PATH=/opt/sphinx_govbr_theme
 SPHINX_IMAGE=sphinx:8.2.3-dev
 PROJECT_DIR="$1"
@@ -23,17 +24,19 @@ if [[ ! "$PROJECT_DIR" || ! -d "$PROJECT_DIR" ]]; then
     PROJECT_DIR="$BASE_DIR/example"
 fi
 
-WORK_DIR=`mktemp -d -p /tmp`
-if [[ ! "$WORK_DIR" || ! -d "$WORK_DIR" ]]; then
-    echo "Could not create temporary directory"
-    exit 1
-fi
+mkdir -p $WORK_DIR
 
 echo "Running $SPHINX_IMAGE"
 echo " Documentation: $PROJECT_DIR"
 echo "Work directory: $WORK_DIR"
 
-docker run -it --rm \
+SUDO_PREFIX=""
+if docker ps 2>&1 | grep -q "/var/run/docker.sock"; then
+    echo "Using 'sudo' to run Docker"
+    SUDO_PREFIX="sudo"
+fi
+
+${SUDO_PREFIX} docker run -it --rm \
     -v $PROJECT_DIR:/docs \
     -v $WORK_DIR:/docs-build \
     -v $BASE_DIR:$POD_THEME_PATH \

@@ -567,6 +567,9 @@
 #main-content a.br-button span {
   margin-top: -0.25em;
 }
+#main-content button.br-button {
+  padding-bottom: 4px;
+}
 
 #main-content section {
   scroll-margin-top: 7.5em;
@@ -660,6 +663,17 @@
 
 .br-breadcrumb .crumb .icon {
   color: var(--gray-30) !important;
+}
+
+.talk-content .comment {
+  margin-bottom: 3em;
+}
+.talk-content .comment blockquote {
+  border-left-color: var(--interactive-light);
+}
+.talk-content .comment blockquote:not(:first-child) {
+  margin-left: 3em;
+  border-left-color: var(--gray-warm-30);
 }
 
 /*# sourceMappingURL=styles-min.css.map */

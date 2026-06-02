@@ -27,7 +27,7 @@ html_static_path = ['_static']
 html_copy_source = False
 html_last_updated_fmt = '%Y-%m-%d'
 html_use_index = False
-html_baseurl = os.environ.get("HTML_BASEURL", 'http://localhost:8000/')
+html_baseurl = os.environ.get("HTML_BASEURL", 'http://127.0.0.1:8000/')
 html_permalinks_icon = '<i class="fas fa-link" aria-hidden="true"></i>'
 html_theme_options = {
     'show_child_topics': True,

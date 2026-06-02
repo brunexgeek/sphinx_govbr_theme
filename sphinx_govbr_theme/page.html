@@ -9,6 +9,42 @@
 
 {%- block page_content %}
 <div class="col mb-5">
+    {%- if theme_discussion_enabled and theme_discussion_host %}
+    <div class="br-tab">
+        <nav class="tab-nav">
+            <ul>
+            <li class="tab-item active">
+                <button type="button" class="small" data-tab="content"><span class="name"><span class="d-flex flex-column flex-sm-row"><span class="icon mb-1 mb-sm-0 mr-sm-1"></span><span class="name">Conteúdo</span></span></span></button>
+            </li>
+            <li class="tab-item">
+                <button type="button" class="small" data-tab="talk"><span class="name"><span class="d-flex flex-column flex-sm-row"><span class="icon mb-1 mb-sm-0 mr-sm-1"></span><span class="name">Discussão</span></span></span></button>
+            </li>
+            </ul>
+        </nav>
+    </div>
+    <script>
+        document.querySelectorAll('.br-tab button').forEach(button => {
+            button.addEventListener('click', event => {
+                // deactivate all tabs
+                document.querySelectorAll('.br-tab .tab-item').forEach(button => {
+                    button.classList.remove('active');
+                });
+                // activate the current tab
+                event.currentTarget.closest('li')?.classList.add('active');
+
+                const tab = event.currentTarget.getAttribute('data-tab', '');
+                document.querySelectorAll('.tab-content').forEach(element => {
+                    element.setAttribute('hidden', '');
+                });
+                document.querySelector('.tab-content[data-tab="' + tab + '"]')?.removeAttribute('hidden');
+            });
+        });
+    </script>
+    <div class="tab-content" data-tab="talk" hidden>
+        {%- include "partials/talk.html" %}
+    </div>
+    <div class="tab-content" data-tab="content">
+    {%- endif %}
         {%- if pagename != master_doc %}
         <nav class="br-breadcrumb">
             <ol class="crumb-list" role="list">
@@ -96,5 +132,8 @@
             </section>
             {%- endif %}
         </article>
+    {%- if theme_discussion_enabled and theme_discussion_host %}
     </div>
+    {%- endif %}
+</div>
 {%- endblock %}

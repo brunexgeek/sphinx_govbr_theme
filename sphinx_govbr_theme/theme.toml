@@ -17,3 +17,5 @@ content_license = { 'name' = 'Creative Commons Atribuição 4.0', 'url' = 'https
 toc_pruning = false
 toc_only_pages = false
 base_url = ''
+discussion_enabled = false
+discussion_host = ''

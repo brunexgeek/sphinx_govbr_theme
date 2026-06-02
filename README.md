@@ -46,6 +46,10 @@ Define o texto que aparece logo abaixo do título do site, na barra superior.
 project_subtitle = "Design System | Versão 3.7.0"
 ```
 
+### theme_enable_discussion
+
+Habilita a aba de discussão em cada página da documentação. O valor padrão é `false`.
+
 ## Componentes
 
 Os seguintes componentes estão disponíveis para uso nos documentos:

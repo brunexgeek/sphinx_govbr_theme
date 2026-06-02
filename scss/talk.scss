@@ -1,0 +1,14 @@
+.talk-content {
+    .comment {
+        margin-bottom: 3em;
+
+        blockquote {
+            border-left-color: var(--interactive-light);
+        }
+
+        blockquote:not(:first-child) {
+            margin-left: 3em;
+            border-left-color: var(--gray-warm-30);
+        }
+    }
+}
