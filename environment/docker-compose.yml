@@ -1,0 +1,37 @@
+# docker-compose.yml
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - /tmp/sphinx_govbr_theme_build:/usr/share/nginx/html
+    depends_on:
+      - remark
+
+  remark:
+    image: ghcr.io/umputun/remark42:v1.16.1
+    container_name: "remark42"
+    hostname: "remark42"
+    restart: always
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      - REMARK_URL= # required
+      - SECRET= # required
+      - DEBUG=true
+      - AUTH_ANON=true
+      #- APP_UID=1000
+
+    volumes:
+      - /tmp/remark42:/srv/var
