@@ -2,7 +2,7 @@
 
 Tema Sphinx baseado no [Design System do gov.br](https://www.gov.br/ds/home).
 
-![Theme screenshot](example/screenshot.webp)
+Navegue no [site de demonstração](https://brunexgeek.github.io/sphinx_govbr_theme/index.html) para conferir o tema.
 
 ## Opções do tema
 
