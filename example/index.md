@@ -32,7 +32,6 @@ Quisque quis enim nec arcu aliquet pellentesque. Cras mattis, mauris ac auctor v
 Vestibulum non posuere nisi. Curabitur in molestie tellus. Quisque a odio pellentesque, rhoncus urna ut, interdum magna. Maecenas tempor nibh ut urna malesuada, id fringilla risus consectetur. Suspendisse potenti. Nullam dapibus feugiat imperdiet. Sed fermentum lorem ut tincidunt blandit. Duis sed tincidunt sem. Curabitur bibendum elementum tortor, eget convallis ex vehicula eu. Donec ex leo, aliquam bibendum blandit sit amet, vulputate nec velit. Fusce vel scelerisque arcu, non mattis arcu. Duis quis rhoncus enim.
 
 ```{toctree}
-:maxdepth: 3
 :includehidden:
 
 intro/patrimonio-mundial

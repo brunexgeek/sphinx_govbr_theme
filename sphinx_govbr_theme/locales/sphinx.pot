@@ -60,3 +60,8 @@ msgstr ""
 msgid "All content of this site is published under license"
 msgstr ""
 
+msgid "Open"
+msgstr ""
+
+msgid "Close"
+msgstr ""

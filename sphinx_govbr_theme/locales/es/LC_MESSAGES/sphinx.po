@@ -61,3 +61,8 @@ msgstr "Ir al pie de página"
 msgid "All content of this site is published under license"
 msgstr "Todo el contenido de este sitio está publicado bajo licencia"
 
+msgid "Open"
+msgstr "Abrir"
+
+msgid "Close"
+msgstr "Cerrar"

@@ -46,7 +46,7 @@
     <div class="tab-content" data-tab="content">
     {%- endif %}
         {%- if pagename != master_doc %}
-        <nav class="br-breadcrumb">
+        <nav class="br-breadcrumb mb-4">
             <ol class="crumb-list" role="list">
                 <li class="crumb home"><a class="br-button circle" title="{{ _('Home page') }}" href="{{ pathto(master_doc) }}"><span class="sr-only">{{ _('Home page') }}</span><i class="fas fa-home"></i></a></li>
                 {%- for doc in parents -%}
@@ -57,7 +57,7 @@
         </nav>
         {%- endif %}
 
-        <article class="main-content pl-sm-3 mt-4" id="main-content">
+        <article class="main-content pl-sm-3" id="main-content">
             {%- set vns = namespace() %}
             {%- set vns.show_children = show_child_topics and govbr_local_toc_map %}
             {%- set vns.show_parent = theme_show_parent_topic and govbr_parent %}

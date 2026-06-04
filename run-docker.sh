@@ -15,6 +15,7 @@ if [ "$1" == "--container" ]; then
     sphinx-autobuild -v -a \
         --watch /opt/sphinx_govbr_theme/sphinx_govbr_theme \
         --re-ignore '.*/__pycache__/.*' \
+        --host 0.0.0.0 \
         /docs /docs-build
     exit 0
 fi
@@ -42,6 +43,5 @@ ${SUDO_PREFIX} docker run -it --rm \
     -v $BASE_DIR:$POD_THEME_PATH \
     -e DOCS_BUILD=$WORK_DIR \
     -p 8000:8000 \
-    --network host \
     --name govbr-sphinx \
     $SPHINX_IMAGE $POD_THEME_PATH/run-docker.sh --container
