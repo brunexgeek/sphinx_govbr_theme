@@ -16,16 +16,17 @@
             {%- set vns = namespace(counter=1) %}
             {%- set vns.counter = 1 %}
             {%- for item in breadcrumbs %}
+            {%- if vns.counter > 1 %},{% endif %}
             {
                 "@type": "ListItem",
                 "position": {{ vns.counter }},
                 "name": "{{ item.title|e }}",
-                "item": "{{ item.abs_link|default(item.link) }}"
-            },
+                "item": "{{ item.link }}"
+            }
             {%- set vns.counter = vns.counter + 1 %}
             {%- endfor %}
         ],
-        "numberOfItems": {{ vns.counter }}
+        "numberOfItems": {{ vns.counter - 1 }}
     }
 }
 </script>
