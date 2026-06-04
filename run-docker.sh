@@ -16,6 +16,7 @@ if [ "$1" == "--container" ]; then
         --watch /opt/sphinx_govbr_theme/sphinx_govbr_theme \
         --re-ignore '.*/__pycache__/.*' \
         --host 0.0.0.0 \
+        -A use_custom_websocket=true \
         /docs /docs-build
     exit 0
 fi

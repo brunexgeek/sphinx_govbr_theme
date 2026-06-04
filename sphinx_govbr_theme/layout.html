@@ -56,5 +56,8 @@
     {{ js_tag(scriptfile) }}
   {%- endfor %}
   {%- block scripts %} {% endblock %}
+  {% if use_custom_websocket %}
+  <script>const wws = new WebSocket("ws://127.0.0.1:8000/websocket-reload");wws.onmessage = () => window.location.reload();</script>
+  {% endif %}
 </body>
 </html>
