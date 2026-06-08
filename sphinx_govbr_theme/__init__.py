@@ -74,8 +74,11 @@ def generate_breadcrumbs(app, pagename, templatename, context, doctree):
         })
     context["breadcrumbs"] = enriched
 
-def _make_absolute_url(path, base):
-    return urljoin(base, path)
+def filter_regex_search(value, pattern):
+    return bool(re.search(pattern, value))
+
+def _on_builder_inited(app):
+        app.builder.templates.environment.filters["regex_search"] = filter_regex_search
 
 def setup(app):
     app.set_translator("html", DesignSystemTranslator)
@@ -89,6 +92,7 @@ def setup(app):
     theme_path = os.path.abspath(os.path.dirname(__file__))
     app.add_html_theme('sphinx_govbr_theme', theme_path)
 
+    app.connect("builder-inited", _on_builder_inited)
     app.connect("doctree-resolved", _on_doctree_resolved)
     app.connect("html-page-context", generate_breadcrumbs)
 

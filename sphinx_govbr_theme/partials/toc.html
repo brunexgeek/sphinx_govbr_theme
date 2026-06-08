@@ -29,7 +29,7 @@
             {%- for sub in item.children %}
                 {{- generate_navigation_item(sub, suffix, level) }}
             {%- endfor %}
-        {%- elif level < max_toc_level and vns.children > 0 -%}
+        {%- elif level < max_toc_level and vns.children > 0 and not (item.url | regex_search('#.+$')) -%}
             <li class="sub {% if item.is_path %} path-to-active{% endif %} toc-level-{{level}} {% if item.is_active %} active{% endif %}">
                 <div class="item">
                     <a {% if item.is_active %}aria-current="page"{% endif %} class="link" href="{{ item.url }}">{{ item.title|striptags|e }}</a>
