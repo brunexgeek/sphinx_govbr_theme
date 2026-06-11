@@ -106,7 +106,7 @@ class TreeGenerator():
                         #logger.warning(f'--- self.pagename is {colorize('darkgreen', self.pagename)} and current pagename is {colorize('darkgreen', entry['pagename'])}:\n{self.local_toc}')
 
         if 'title' not in entry or not entry['title']:
-            return None
+            return None, false
         # set reference to local TOC
         if entry['is_active']:
             self.pageentry = entry
@@ -120,7 +120,7 @@ class TreeGenerator():
                 res1, res2 = self._parse_list_item(item)
                 if res1 != None:
                     result.append(res1)
-                is_path = is_path or res2
+                    is_path = is_path or res2
         return result, is_path
 
     def _compute_global_toc(self, node):
