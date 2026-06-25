@@ -173,4 +173,40 @@
     color: var(--gray-30) !important;
 }
 
+details.br_detail {
+    font-size: var(--font-size-scale-up-01);
+    line-height: var(--font-line-height-medium);
+    font-weight: var(--font-weight-semi-bold);
+    margin-bottom: var(--spacing-scale-2x);
+    margin-top: 0;
+    cursor: pointer;
+/*
+    summary {
+        list-style: none;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &::before {
+            content: "▸";
+            margin-right: .5em;
+            font-family: "Font Awesome 5 Free";
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            display: var(--fa-display, inline-block);
+            font-style: normal;
+            font-variant: normal;
+            line-height: 1;
+            text-rendering: auto;
+            content: "\f106";
+        }
+    }
+
+
+    &[open] > summary::before {
+        content: "▾";
+    }*/
+}
+
 @import "talk.scss";

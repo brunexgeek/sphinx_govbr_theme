@@ -162,4 +162,6 @@ def visit_cardlist_html(self, node):
 def depart_cardlist_html(self, node):
     self.body.append("</div></div>")
 
-
+def setup_cardlist(app):
+    app.add_node(cardlist, html=(visit_cardlist_html, depart_cardlist_html))
+    app.add_directive("br_cardlist", BrCardListDirective)

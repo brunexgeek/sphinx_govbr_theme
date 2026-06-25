@@ -25,3 +25,37 @@ class BrLinkRole(XRefRole):
                 n["refdomain"] = 'std'
 
         return node_list, messages
+
+def br_open_accordion(
+    name,
+    rawtext,
+    text,
+    lineno,
+    inliner,
+    options=None,
+    content=None,
+):
+    node = nodes.raw(
+        "",
+        f'<details class="br_detail"><summary class="h3">{text}</summary>',
+        format="html",
+    )
+
+    return [node], []
+
+def br_close_accordion(
+    name,
+    rawtext,
+    text,
+    lineno,
+    inliner,
+    options=None,
+    content=None,
+):
+    node = nodes.raw(
+        "",
+        '</details>',
+        format="html",
+    )
+
+    return [node], []
