@@ -1,14 +1,15 @@
-@import "rawline.scss";
-@import "menu.scss";
+@use "variables.scss";
+@forward "rawline.scss";
+@forward "menu.scss";
 
 /* Menu button adjustments */
-@media (min-width: $breakpoint-md) {
+@media (min-width: variables.$breakpoint-md) {
     #show-navigation {
         display: none;
     }
 }
 
-@media (max-width: $breakpoint-md) {
+@media (max-width: variables.$breakpoint-md) {
     #fake-navigation {
         display: none;
         cursor: pointer;
@@ -16,7 +17,7 @@
 }
 
 /* Menu logo adjustments */
-@media (max-width: $breakpoint-md) {
+@media (max-width: variables.$breakpoint-md) {
     .br-menu {
        --menu-logo: 24px;
     }
@@ -68,10 +69,6 @@
     & > h4,
     & > h5,
     & > h6 {
-        display: flex;
-        flex-direction: row;
-        align-content: center;
-
         & > a:hover {
             background-image: none !important;
         }
@@ -82,6 +79,7 @@
             transition: opacity 100ms ease-in-out;
             font-size: .8em;
             margin-left: .2em;
+            baseline-shift: center;
         }
 
         &:hover a.headerlink {
@@ -208,5 +206,3 @@ details.br_detail {
         content: "▾";
     }*/
 }
-
-@import "talk.scss";

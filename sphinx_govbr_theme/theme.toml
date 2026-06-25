@@ -2,7 +2,7 @@
 inherit = "basic"
 stylesheets = [
     "css/core-lite-min.css",
-    "css/styles-min.css"
+    "css/main-min.css"
 ]
 
 [options]

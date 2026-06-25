@@ -1,5 +1,5 @@
-@import "variables.scss";
-@import "dp-menu.scss";
+@use "variables.scss";
+@forward "dp-menu.scss";
 
 .fa-solid {
   font-family: "Font Awesome 5 Free";
@@ -24,12 +24,12 @@
   display: none;
 }
 
-@media (max-width: $breakpoint-sm) {
+@media (max-width: variables.$breakpoint-sm) {
   #menu-navigation {
     width: 100vw;
   }
 }
-@media (min-width: $breakpoint-md) {
+@media (min-width: variables.$breakpoint-md) {
     #sidebar-navigation {
         display: flex;
         flex-direction: column;
@@ -48,13 +48,13 @@
     }
 }
 
-@media (min-width: $breakpoint-lg) {
+@media (min-width: variables.$breakpoint-lg) {
   #sidebar-navigation {
     width: 27em;
   }
 }
 
-@media (min-width: $breakpoint-xl) {
+@media (min-width: variables.$breakpoint-xl) {
   #sidebar-navigation {
     width: 30em;
   }
